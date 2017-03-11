@@ -1,20 +1,45 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import { MaterialModule } from '@angular/material';
+import { Ng2UiAuthModule, CustomConfig } from 'ng2-ui-auth';
+
 import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
+
+import { BoardService } from './board/board.service';
+
+import { CoreModule }    from './core/core.module';
+import { routing } from "./app.routing";
+
+export class AuthConfig extends CustomConfig {
+    defaultHeaders = {'Content-Type': 'application/json'};
+    baseUrl = 'http://localhost:8000';
+    providers = {
+        facebook: {clientId: '432035347139976'},
+        google: {clientId: '65151455439-gie36be97nmf6iskmpu6b0frdo5ihb8b.apps.googleusercontent.com'}
+    };
+}
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule,
-    HttpModule
+    ReactiveFormsModule,
+    HttpModule,
+    Ng2UiAuthModule.forRoot(AuthConfig),
+    MaterialModule,
+    CoreModule,
+    routing
   ],
-  providers: [],
+  providers: [
+    BoardService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
