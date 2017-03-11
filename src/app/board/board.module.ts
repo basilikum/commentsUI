@@ -1,4 +1,4 @@
-import { NgModule } from "@angular/core";
+import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { MaterialModule } from '@angular/material';
@@ -6,8 +6,9 @@ import { MaterialModule } from '@angular/material';
 import { BoardComponent } from './board.component';
 import { ThreadDetailComponent } from './thread-detail/thread-detail.component';
 import { ThreadListComponent } from './thread-list/thread-list.component';
-import { boardRouting } from "./board.routing";
-import { SharedModule } from "../shared/shared.module";
+import { boardRouting } from './board.routing';
+import { BoardResolve } from './board.resolve';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -22,5 +23,8 @@ import { SharedModule } from "../shared/shared.module";
         ReactiveFormsModule,
         boardRouting
     ],
+    providers: [
+        BoardResolve
+    ]
 })
 export class BoardModule {}

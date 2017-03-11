@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
     onSubmit() {
         const url = this.goToBoardForm.value.url;
         this.dataService.getOrCreateBoard(url).subscribe(board => {
-            console.log(board);
+            this.router.navigate(['/board', board.id]);
         });
     }
 

@@ -14,12 +14,18 @@ export class BoardService {
     constructor(private http: JwtHttp) { }
 
     getOrCreateBoard(url: string): Observable<Board> {
-        return this.getBoard(url).catch(error => {
+        return this.getBoardByUrl(url).catch(error => {
             return this.createBoard(url);
         });
     }
 
-    getBoard(url: string): Observable<Board> {
+    getBoard(id: string): Observable<Board> {
+        return this.http.get(this.boardsUrl + id + '/').map(
+            (response: Response) => response.json()
+        );
+    }
+
+    getBoardByUrl(url: string): Observable<Board> {
         return this.http.get(this.boardsUrl + '?url=' + url).map(
             (response: Response) => {
                 const results = response.json().results;
