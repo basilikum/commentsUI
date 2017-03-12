@@ -4,7 +4,7 @@ import { BoardResolve } from './board.resolve';
 
 const BOARD_ROUTES: Routes = [
     { path: ":id", component: BoardComponent, resolve: {
-      contact: BoardResolve
+      board: BoardResolve
     }}
 ];
 

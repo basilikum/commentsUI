@@ -1,9 +1,9 @@
-export class Site {
+export class User {
     public id: string;
-    public netloc: string;
+    public name: string;
 
     constructor(data: any) {
         this.id = data.id;
-        this.netloc = data.netloc;
+        this.name = data.name;
     }
 }

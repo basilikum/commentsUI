@@ -1,6 +1,16 @@
-<md-toolbar color="primary">
-  <span>{{ title }}</span>
-</md-toolbar>
-<a [routerLink]="['/login']">Login</a>
-<a [routerLink]="['/board']">Board</a>
-<router-outlet></router-outlet>
+<div fxLayout="column" fxLayoutAlign="stretch center" style="min-height:100%;">
+    <header fxFlex="none" fxFlexFill>
+        <md-toolbar id="title-bar" color="primary">
+            <span>{{ title }}</span>
+            <a [routerLink]="['/login']">Login</a>
+        </md-toolbar>
+    </header>
+
+    <main fxFlex fxFlexFill>
+        <router-outlet></router-outlet>
+    </main>
+
+    <footer fxFlex="none" fxFlexFill>
+        Footer
+    </footer>
+</div>

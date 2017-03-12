@@ -1,8 +1,8 @@
-<form  (ngSubmit)="onSubmit()" [formGroup]="goToBoardForm">
-    <md-input-container>
-        <label>Discuss this Website:</label>
-        <input mdInput type="text" placeholder="Discuss Website" formControlName="url">
-    </md-input-container>
-    <button type="submit" class="btn btn-default" [disabled]="!goToBoardForm.valid">Go!</button>
-</form>
-<md-icon>done</md-icon>
+<div fxLayout="row" fxLayoutAlign="center stretch">
+    <form id="url-search-form" (ngSubmit)="onSubmit()" [formGroup]="goToBoardForm" fxFlex>
+        <md-input-container class="w100">
+            <input mdInput type="text" placeholder="Discuss Website" formControlName="url">
+        </md-input-container>
+        <button type="submit" md-raised-button [disabled]="!goToBoardForm.valid">Go!</button>
+    </form>
+</div>

@@ -9,6 +9,7 @@ export class BoardResolve implements Resolve<Board> {
     constructor(private boardService: BoardService) {}
 
     resolve(route: ActivatedRouteSnapshot) {
+        console.log(route);
         return this.boardService.getBoard(route.params['id']);
     }
 }

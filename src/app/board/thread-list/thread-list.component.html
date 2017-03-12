@@ -1,3 +1,4 @@
-<p>
-  thread-list works!
-</p>
+<h3>Thread List</h3>
+<div *ngFor="let thread of threadList?.results">
+    {{ thread.title }} / {{ thread.created | date: 'dd/MM/yyyy HH:mm' }}
+</div>

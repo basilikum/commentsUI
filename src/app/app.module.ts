@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { MaterialModule } from '@angular/material';
 import { Ng2UiAuthModule, CustomConfig } from 'ng2-ui-auth';
@@ -34,6 +35,7 @@ export class AuthConfig extends CustomConfig {
     HttpModule,
     Ng2UiAuthModule.forRoot(AuthConfig),
     MaterialModule,
+    FlexLayoutModule,
     CoreModule,
     routing
   ],

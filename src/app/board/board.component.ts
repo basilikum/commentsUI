@@ -14,8 +14,7 @@ export class BoardComponent implements OnInit {
     constructor(private route: ActivatedRoute) { }
 
     ngOnInit() {
-        this.board = this.route.snapshot.data['contact'];
+        this.board = this.route.snapshot.data['board'];
         console.log(this.board);
     }
-
 }
