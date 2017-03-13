@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
+import { Resolve, ActivatedRouteSnapshot, Router } from '@angular/router';
 import { BoardService } from './board.service';
 import { Board } from '../shared/models/board.model';
 
 @Injectable()
 export class BoardResolve implements Resolve<Board> {
 
-    constructor(private boardService: BoardService) {}
+    constructor(
+        private boardService: BoardService,
+        private router: Router
+    ) {}
 
     resolve(route: ActivatedRouteSnapshot) {
-        console.log(route);
-        return this.boardService.getBoard(route.params['id']);
+        const url = route.queryParams['url'];
+        return this.boardService.getOrCreateBoard(url);
     }
 }

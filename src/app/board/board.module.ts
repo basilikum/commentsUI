@@ -3,19 +3,23 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { MaterialModule } from '@angular/material';
 
+import { SharedModule } from '../shared/shared.module';
+
 import { BoardComponent } from './board.component';
+import { BoardNotFoundComponent } from './board-not-found/board-not-found.component';
 import { ThreadDetailComponent } from './thread-detail/thread-detail.component';
 import { ThreadListComponent } from './thread-list/thread-list.component';
+
 import { boardRouting } from './board.routing';
 import { BoardResolve } from './board.resolve';
-import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
     declarations: [
         BoardComponent,
         ThreadDetailComponent,
-        ThreadListComponent
+        ThreadListComponent,
+        BoardNotFoundComponent
     ],
     imports: [
         MaterialModule,
