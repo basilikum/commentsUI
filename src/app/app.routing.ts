@@ -6,7 +6,8 @@ import { IsLoggedOut } from './core/auth/is-logged-out.guard';
 const APP_ROUTES: Routes = [
     { path: "", component: HomeComponent },
     { path: "login", loadChildren: "app/login/login.module#LoginModule", canActivate: [IsLoggedOut] },
-    { path: "board", loadChildren: "app/board/board.module#BoardModule" }
+    { path: "board", loadChildren: "app/board/board.module#BoardModule" },
+    { path: "user", loadChildren: "app/user/user.module#UserModule" }
 ];
 
 export const routing = RouterModule.forRoot(APP_ROUTES);

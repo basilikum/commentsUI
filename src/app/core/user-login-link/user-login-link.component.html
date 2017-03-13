@@ -1,0 +1,9 @@
+<ng-container [ngSwitch]="isAuthenticated()">
+    <a *ngSwitchCase="false" [routerLink]="['/login']">Login</a>
+    <span *ngSwitchCase="true">
+        <a [routerLink]="['/user']">User</a>
+        <button md-button (click)="logout()">Logout</button>
+    </span>
+
+</ng-container>
+

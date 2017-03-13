@@ -13,6 +13,7 @@ import { HomeComponent } from './home/home.component';
 import { BoardService } from './board/board.service';
 
 import { CoreModule }    from './core/core.module';
+import { SharedModule } from './shared/shared.module';
 import { routing } from "./app.routing";
 
 export class AuthConfig extends CustomConfig {
@@ -37,6 +38,7 @@ export class AuthConfig extends CustomConfig {
     MaterialModule,
     FlexLayoutModule,
     CoreModule,
+    SharedModule,
     routing
   ],
   providers: [
