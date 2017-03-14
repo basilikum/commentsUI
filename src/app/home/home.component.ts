@@ -3,7 +3,6 @@ import { Headers, Http, Response } from "@angular/http";
 import { Router } from "@angular/router";
 import { FormArray, FormGroup, FormControl, Validators, FormBuilder } from "@angular/forms";
 
-import { BoardService } from '../board/board.service';
 import { HelperService } from '../core/helper.service';
 
 @Component({
@@ -16,7 +15,6 @@ export class HomeComponent implements OnInit {
     goToBoardForm: FormGroup;
 
     constructor(
-        private dataService: BoardService,
         private formBuilder: FormBuilder,
         private helperService: HelperService,
         private router: Router,
@@ -28,11 +26,7 @@ export class HomeComponent implements OnInit {
 
     onSubmit() {
         const url = this.goToBoardForm.value.url;
-        this.dataService.getOrCreateBoard(url).subscribe(board => {
-            this.router.navigate(['/board'], { queryParams: { url: url }});
-        }, error => {
-            this.router.navigate(['/board', 'not-found'], { queryParams: { url: url }});
-        });
+        this.router.navigate(['/board'], { queryParams: { url: url }});
     }
 
     private initForm() {

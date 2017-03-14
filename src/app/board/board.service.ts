@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from "@angular/http";
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 import { JwtHttp } from 'ng2-ui-auth';
 
@@ -15,13 +14,7 @@ export class BoardService {
 
     private boardsUrl = environment.apiBaseUrl + '/boards/';
 
-    constructor(private http: JwtHttp, private router: Router) { }
-
-    getOrCreateBoard(url: string): Observable<Board> {
-        return this.getBoardByUrl(url).catch(error => {
-            return this.createBoard(url);
-        });
-    }
+    constructor(private http: JwtHttp) { }
 
     getBoard(id: string): Observable<Board> {
         return this.http.get(this.boardsUrl + id + '/').map(
@@ -30,24 +23,11 @@ export class BoardService {
     }
 
     getBoardByUrl(url: string): Observable<Board> {
-        return this.http.get(this.boardsUrl + '?url=' + url).map(
+        return this.http.get(this.boardsUrl + 'url/?url=' + url).map(
             (response: Response) => {
-                const results = response.json().results;
-                if (results.length === 0) {
-                    throw new Error('Object not found');
-                }
-                return new Board(results[0]);
+                return new Board(response.json());
             }
         );
-    }
-
-    createBoard(url: string): Observable<Board> {
-        return this.http.post(this.boardsUrl, { url: url }).map((response: Response) => {
-            return new Board(response.json());
-        }).catch(error => {
-            this.router.navigate(['/board', 'not-found'], { queryParams: { url: url }});
-            return Observable.of(null);
-        })
     }
 
     getThreadList(id: string): Observable<PartialList<Thread>> {

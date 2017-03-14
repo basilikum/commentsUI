@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Resolve, ActivatedRouteSnapshot, Router } from '@angular/router';
+import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { BoardService } from './board.service';
 import { Board } from '../shared/models/board.model';
 
@@ -7,12 +7,11 @@ import { Board } from '../shared/models/board.model';
 export class BoardResolve implements Resolve<Board> {
 
     constructor(
-        private boardService: BoardService,
-        private router: Router
+        private boardService: BoardService
     ) {}
 
     resolve(route: ActivatedRouteSnapshot) {
         const url = route.queryParams['url'];
-        return this.boardService.getOrCreateBoard(url);
+        return this.boardService.getBoardByUrl(url);
     }
 }

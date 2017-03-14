@@ -6,7 +6,6 @@ import { MaterialModule } from '@angular/material';
 import { SharedModule } from '../shared/shared.module';
 
 import { BoardComponent } from './board.component';
-import { BoardNotFoundComponent } from './board-not-found/board-not-found.component';
 import { ThreadDetailComponent } from './thread-detail/thread-detail.component';
 import { ThreadListComponent } from './thread-list/thread-list.component';
 
@@ -18,8 +17,7 @@ import { BoardResolve } from './board.resolve';
     declarations: [
         BoardComponent,
         ThreadDetailComponent,
-        ThreadListComponent,
-        BoardNotFoundComponent
+        ThreadListComponent
     ],
     imports: [
         MaterialModule,
