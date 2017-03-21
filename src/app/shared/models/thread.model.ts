@@ -1,4 +1,5 @@
 import { User } from './user.model';
+import { Post } from './post.model';
 
 export class Thread {
     public id: string;
@@ -6,6 +7,7 @@ export class Thread {
     public board: string;
     public creator: User;
     public created: Date;
+    public post: Post;
 
     constructor(data: any) {
         this.id = data.id;
@@ -13,5 +15,6 @@ export class Thread {
         this.board = data.board;
         this.creator = new User(data.creator);
         this.created = new Date(data.created);
+        this.post = data.post ? new Post(data.post) : null;
     }
 }

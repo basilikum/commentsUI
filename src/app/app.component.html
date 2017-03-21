@@ -1,16 +1,14 @@
-<div fxLayout="column" fxLayoutAlign="stretch center" style="min-height:100%;">
-    <header fxFlex="none" fxFlexFill>
-        <md-toolbar id="title-bar" color="primary">
-            <span>{{ title }}</span>
-            <cmm-user-login-link></cmm-user-login-link>
-        </md-toolbar>
+
+<div class="main-container">
+    <header>
+        <cmm-header></cmm-header>
     </header>
-
-    <main fxFlex fxFlexFill>
-        <router-outlet></router-outlet>
-    </main>
-
-    <footer fxFlex="none" fxFlexFill>
+    <div style="background-color: white">
+        <main>
+            <router-outlet></router-outlet>
+        </main>
+    </div>
+    <footer>
         Footer
     </footer>
 </div>

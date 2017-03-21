@@ -5,12 +5,13 @@ import { FormGroup, Validators, FormBuilder } from "@angular/forms";
 
 import { HelperService } from '../core/helper.service';
 
+
 @Component({
-    selector: 'cmm-home',
-    templateUrl: './home.component.html',
-    styleUrls: ['./home.component.less']
+    selector: 'cmm-header',
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.less']
 })
-export class HomeComponent implements OnInit {
+export class HeaderComponent implements OnInit {
 
     goToBoardForm: FormGroup;
 

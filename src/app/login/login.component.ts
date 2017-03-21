@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import {AuthService} from 'ng2-ui-auth';
@@ -10,12 +11,16 @@ import {AuthService} from 'ng2-ui-auth';
 })
 export class LoginComponent implements OnInit {
 
+    loginForm: FormGroup;
+
     constructor(
         private auth: AuthService,
+        private formBuilder: FormBuilder,
         private router: Router
     ) { }
 
     ngOnInit() {
+        this.initForm();
     }
 
     socialLogin(platform) {
@@ -24,5 +29,19 @@ export class LoginComponent implements OnInit {
                 error: (err: any) => console.log(err),
                 complete: () => this.router.navigate([''])
             });
+    }
+
+    onSubmit() {
+        this.auth.login(this.loginForm.value).subscribe({
+            error: (err: any) => console.log(err),
+            complete: () => this.router.navigate([''])
+        });
+    }
+
+    private initForm() {
+        this.loginForm = this.formBuilder.group({
+            username: ['', Validators.required],
+            password: ['', Validators.required]
+        });
     }
 }

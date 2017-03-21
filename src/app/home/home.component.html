@@ -1,8 +1,9 @@
 <div fxLayout="row" fxLayoutAlign="center stretch">
     <form id="url-search-form" (ngSubmit)="onSubmit()" [formGroup]="goToBoardForm" fxFlex>
-        <md-input-container class="w100">
-            <input mdInput type="text" placeholder="Discuss Website" formControlName="url">
-        </md-input-container>
-        <button type="submit" md-raised-button color="primary" [disabled]="!goToBoardForm.valid">Go!</button>
+        <div class="form-group w100">
+            <label for="urlInput">Discuss Website</label>
+            <input id="urlInput" class="form-control" type="text" placeholder="Discuss Website" formControlName="url">
+        </div>
+        <button class="btn btn-primary" type="submit" [disabled]="!goToBoardForm.valid">Go!</button>
     </form>
 </div>

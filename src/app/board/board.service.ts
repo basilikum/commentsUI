@@ -25,14 +25,36 @@ export class BoardService {
     getBoardByUrl(url: string): Observable<Board> {
         return this.http.get(this.boardsUrl + 'url/?url=' + url).map(
             (response: Response) => {
-                return new Board(response.json());
+                console.log(new Board(Object.assign(response.json(), {url: url})));
+                return new Board(Object.assign(response.json(), {url: url}));
             }
         );
     }
 
-    getThreadList(id: string): Observable<PartialList<Thread>> {
-        return this.http.get(this.boardsUrl + 'threads/?b=' + id).map(
+    getThreadList(id: string, page: number): Observable<PartialList<Thread>> {
+        var qs = '?b=' + id;
+        if (page > 1) {
+            qs += '&page=' + page;
+        }
+        return this.http.get(this.boardsUrl + 'threads/' + qs).map(
             (response: Response) => new PartialList<Thread>(Thread, response.json())
+        );
+    }
+
+    createThread(url: string, title: string, message: string) {
+        const data = {
+            url: url,
+            title: title,
+            text: message
+        };
+        return this.http.post(this.boardsUrl + 'threads/', data).map(
+            (response: Response) => new Thread(response.json())
+        );
+    }
+
+    getThread(id: string): Observable<Thread> {
+        return this.http.get(this.boardsUrl + 'threads/' + id + '/').map(
+            (response: Response) => new Thread(response.json())
         );
     }
 }

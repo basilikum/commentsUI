@@ -1,0 +1,14 @@
+<nav class="navbar navbar-light navbar-toggleable-xl bg-faded">
+      <a [routerLink]="['']" class="navbar-brand">SCOTI</a>
+      <div class="navbar-collapse collapse">
+          <form class="form-inline mx-auto w-75" (ngSubmit)="onSubmit()" [formGroup]="goToBoardForm">
+              <div class="input-group w-100">
+                  <input class="form-control" id="header_url_input" type="text" placeholder="Enter/Paste URL here" formControlName="url">
+                  <span class="input-group-btn">
+                      <button class="btn btn-secondary" type="submit" [disabled]="!goToBoardForm.valid">Go!</button>
+                  </span>
+              </div>
+          </form>
+          <cmm-user-login-link></cmm-user-login-link>
+      </div>
+</nav>

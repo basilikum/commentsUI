@@ -1,4 +1,9 @@
-<p>
-  board works!
-</p>
-<cmm-thread-list [boardId]="board.id"></cmm-thread-list>
+<h4>
+  {{ board?.site.netloc }}
+  <small class="text-muted">{{ board?.path }}</small>
+</h4>
+
+<router-outlet></router-outlet>
+<!--
+<cmm-thread-list [boardId]="board?.id"></cmm-thread-list>
+-->

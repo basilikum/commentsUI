@@ -1,4 +1,43 @@
-<h3>Thread List</h3>
-<div *ngFor="let thread of threadList?.results">
-    {{ thread.title }} / {{ thread.created | date: 'dd/MM/yyyy HH:mm' }}
-</div>
+<a class="btn btn-success" [routerLink]="['/board', 'new']" queryParamsHandling="preserve">New Thread</a>
+<hr>
+
+<table class="table table-hover table-sm thread-list">
+    <colgroup>
+        <col width="*">
+        <col width="150px">
+        <col width="150px">
+    </colgroup>
+    <thead class="thead-inverse">
+        <tr>
+            <th>Title</th>
+            <th>Created by</th>
+            <th>Created at</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let thread of threadList?.results" [routerLink]="['/board', thread.id]" queryParamsHandling="preserve">
+            <td>{{ thread.title }}</td>
+            <td>{{ thread.creator.name }}</td>
+            <td>{{ thread.created | date: 'dd/MM/yyyy HH:mm' }}</td>
+        </tr>
+    </tbody>
+</table>
+<nav aria-label="thread list navigation">
+    <ul class="pagination">
+        <li class="page-item" [class.disabled]="threadList?.page <= 1">
+            <a class="page-link" [routerLink]="['/board']" [queryParams]="{ url: board.url, page: threadList?.page - 1 }" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+            </a>
+        </li>
+        <li class="page-item" *ngFor="let i of threadList?.pages" [class.active]="i === threadList?.page">
+            <a class="page-link" [routerLink]="['/board']" [queryParams]="{ url: board.url, page: i }">{{ i }}</a>
+        </li>
+        <li class="page-item" [class.disabled]="threadList?.page >= threadList?.numberOfPages">
+            <a class="page-link" [routerLink]="['/board']" [queryParams]="{ url: board.url, page: threadList?.page + 1 }" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+            </a>
+        </li>
+    </ul>
+</nav>

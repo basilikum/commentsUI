@@ -10,4 +10,14 @@ export class HelperService {
     isUrl(url: string) : boolean {
         return this.urlRegex.test(url);
     }
+
+    formatQueryParams(params: any) : string {
+        return Object.keys(params).map(key => {
+            let val = params[key];
+            if (Array.isArray(val)) {
+                return val.map(v => key + '=' + v).join('&');
+            }
+            return key + '=' + val;
+        }).join('&');
+    }
 }
