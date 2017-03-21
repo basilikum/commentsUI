@@ -1,0 +1,9 @@
+<div class="post">
+    <div class="post-header p-3 bg-faded">
+        <cmm-user-label [user]="post.creator"></cmm-user-label>
+        {{ post.created | date: 'dd/MM/yyyy HH:mm' }}
+    </div>
+    <div class="post-content p-3">
+        {{ post.text }}
+    </div>
+</div>

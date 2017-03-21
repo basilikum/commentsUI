@@ -3,8 +3,10 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
 import { Board } from '../../shared/models/board.model';
 import { Thread } from '../../shared/models/thread.model';
+import { Post } from '../../shared/models/post.model';
+import { PartialList } from '../../shared/partial-list';
 
-import { BoardService } from '../board.service';
+import { PostService } from '../post.service';
 
 
 @Component({
@@ -16,13 +18,15 @@ export class ThreadDetailComponent implements OnInit {
 
     private dataSub : Subscription;
     private paramsSub : Subscription;
+    private page = 1;
 
     board: Board;
     thread: Thread;
+    postList: PartialList<Post>;
 
     constructor(
         private route: ActivatedRoute,
-        private boardService: BoardService
+        private postService: PostService
     ) { }
 
     ngOnInit() {
@@ -31,7 +35,10 @@ export class ThreadDetailComponent implements OnInit {
             this.thread = data.thread;
         });
         this.paramsSub = this.route.queryParams.subscribe((params: { page: number }) => {
-
+            this.page = params.page;
+            if (this.thread) {
+                this.update();
+            }
         });
     }
 
@@ -41,10 +48,11 @@ export class ThreadDetailComponent implements OnInit {
     }
 
     private update() {
-        this.boardService
-            .getThreadList(this.board.id, this.page)
-            .subscribe((threadList: PartialList<Thread>) => {
-            this.threadList = threadList;
+        this.postService.list({
+            parent: this.thread.post.id,
+            page: this.page || 1
+        }).subscribe((postList: PartialList<Post>) => {
+            this.postList = postList;
         });
     }
 }

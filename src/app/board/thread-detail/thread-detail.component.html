@@ -1,3 +1,25 @@
 <a class="btn btn-secondary" [routerLink]="['/board']" queryParamsHandling="preserve" role="button">Thread List</a>
 <hr>
-<p>{{ thread?.title }}</p>
+<h5>{{ thread?.title }}</h5>
+<cmm-post [post]="thread?.post"></cmm-post>
+<cmm-post *ngFor="let post of postList?.results" [post]="post"></cmm-post>
+
+<nav aria-label="post list navigation">
+    <ul class="pagination">
+        <li class="page-item" [class.disabled]="postList?.page <= 1">
+            <a class="page-link" [routerLink]="['/board', thread.id]" [queryParams]="{ url: board.url, page: postList?.page - 1 }" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+            </a>
+        </li>
+        <li class="page-item" *ngFor="let i of postList?.pages" [class.active]="i === postList?.page">
+            <a class="page-link" [routerLink]="['/board', thread.id]" [queryParams]="{ url: board.url, page: i }">{{ i }}</a>
+        </li>
+        <li class="page-item" [class.disabled]="postList?.page >= postList?.numberOfPages">
+            <a class="page-link" [routerLink]="['/board', thread.id]" [queryParams]="{ url: board.url, page: postList?.page + 1 }" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+            </a>
+        </li>
+    </ul>
+</nav>

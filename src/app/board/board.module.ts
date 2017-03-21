@@ -11,6 +11,7 @@ import { boardRouting } from './board.routing';
 import { BoardResolver } from './board.resolver';
 import { ThreadResolver } from './thread.resolver';
 import { ThreadNewComponent } from './thread-new/thread-new.component';
+import { PostComponent } from './post/post.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { ThreadNewComponent } from './thread-new/thread-new.component';
         BoardComponent,
         ThreadDetailComponent,
         ThreadListComponent,
-        ThreadNewComponent
+        ThreadNewComponent,
+        PostComponent
     ],
     imports: [
         SharedModule,
