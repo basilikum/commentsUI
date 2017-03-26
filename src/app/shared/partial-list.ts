@@ -12,7 +12,6 @@ export class PartialList<T> {
         this.page = data.page;
         this.numberOfPages = Math.max(1, Math.ceil(this.count / this.pageSize));
         this.pages = (new Array(this.numberOfPages)).fill(1).map((val, i) => i + 1);
-        console.log(this.pages);
         this.results = data.results.map((d: any) => {
             return new TCreator(d);
         });

@@ -26,4 +26,16 @@ export class PostService {
             return new PartialList<Post>(Post, response.json());
         });
     }
+
+    children(post: Post): Observable<Post[]> {
+        return this.http.get(this.postsUrl + post.id + '/children/').map((response: Response) => {
+            return response.json().map(data => new Post(data));
+        });
+    }
+
+    create(data: any): Observable<Post> {
+        return this.http.post(this.postsUrl, data).map((response: Response) => {
+            return new Post(response.json());
+        });
+    }
 }

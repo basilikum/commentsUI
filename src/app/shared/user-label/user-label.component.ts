@@ -10,6 +10,7 @@ import { User } from '../models/user.model';
 export class UserLabelComponent implements OnInit {
 
     @Input() user: User;
+    @Input() date: Date;
 
     constructor() { }
 

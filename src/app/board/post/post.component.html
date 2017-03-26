@@ -1,9 +1,35 @@
-<div class="post">
-    <div class="post-header p-3 bg-faded">
-        <cmm-user-label [user]="post.creator"></cmm-user-label>
-        {{ post.created | date: 'dd/MM/yyyy HH:mm' }}
+<article class="post d-flex flex-row my-3">
+    <div class="post-sidebar">
+        <cmm-user-label [user]="post.creator" [date]="post.created"></cmm-user-label>
     </div>
-    <div class="post-content p-3">
-        {{ post.text }}
+    <div class="d-flex flex-column w-100">
+        <h4 *ngIf="title" class="px-3 mb-2">{{ title }}</h4>
+        <div class="post-content px-3 pb-3">
+            {{ post.text }}
+        </div>
+        <div class="post-controls px-3 py-1 d-flex flex-row">
+            <div class="align-self-start" *ngIf="post.numberOfChildren > 0">
+                <button class="btn btn-secondary" (click)="hideAnswers()" *ngIf="post.showChildren">
+                    Hide Replies
+                </button>
+                <button class="btn btn-outline-primary" (click)="showAnswers()" *ngIf="!post.showChildren">
+                    Show all {{ post.numberOfChildren }} Replies
+                </button>
+            </div>
+            <div class="ml-auto">
+                <button *ngIf="!post.showReplyForm" class="btn btn-secondary" (click)="reply()">Reply</button>
+                <button *ngIf="post.showReplyForm" class="btn btn-secondary" (click)="cancelReply()">Cancel Reply</button>
+            </div>
+        </div>
+        <div class="p-3" *ngIf="post.showReplyForm">
+            <form (ngSubmit)="submitReply()" [formGroup]="replyForm">
+                <div class="form-group">
+                    <label class="sr-only" for="replyToPostInput{{ post.id }}">Reply</label>
+                    <textarea class="form-control" id="replyToPostInput{{ post.id }}" rows="15" formControlName="message" placeholder="Your reply here..."></textarea>
+                </div>
+                <button class="btn btn-success" type="submit" [disabled]="!replyForm.valid">Send Reply</button>
+                <button class="btn btn-secondary" type="button" (click)="cancelReply()">Cancel</button>
+            </form>
+        </div>
     </div>
-</div>
+</article>

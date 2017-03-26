@@ -1,9 +1,29 @@
 <a class="btn btn-secondary" [routerLink]="['/board']" queryParamsHandling="preserve" role="button">Thread List</a>
 <hr>
-<h5>{{ thread?.title }}</h5>
-<cmm-post [post]="thread?.post"></cmm-post>
-<cmm-post *ngFor="let post of postList?.results" [post]="post"></cmm-post>
 
+<cmm-post [post]="thread?.post"
+          [title]="thread?.title"
+          (replyOpened)="replyOpened($event)"
+          (replyClosed)="replyClosed($event)"
+          (postCreated)="postCreated($event)">
+</cmm-post>
+<hr>
+<div *ngFor="let post of postList?.results">
+    <cmm-post [post]="post"
+              (opened)="postOpened($event)"
+              (replyOpened)="replyOpened($event)"
+              (replyClosed)="replyClosed($event)"
+              (postCreated)="postCreated($event)">
+    </cmm-post>
+    <div class="post-children" *ngIf="post.showChildren && post.numberOfChildren > 0">
+        <cmm-post
+            *ngFor="let childPost of post.children"
+            [post]="childPost"
+            (postCreated)="postCreated($event)">
+        </cmm-post>
+    </div>
+    <hr>
+</div>
 <nav aria-label="post list navigation">
     <ul class="pagination">
         <li class="page-item" [class.disabled]="postList?.page <= 1">

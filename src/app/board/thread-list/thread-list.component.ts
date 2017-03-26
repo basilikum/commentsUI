@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
 
@@ -15,9 +15,10 @@ import { BoardService } from '../board.service';
     templateUrl: './thread-list.component.html',
     styleUrls: ['./thread-list.component.less']
 })
-export class ThreadListComponent implements OnInit {
+export class ThreadListComponent implements OnInit, OnDestroy {
 
-    private sub: Subscription;
+    private dSub: Subscription;
+    private qSub: Subscription;
     private page = 1;
 
     board: Board;
@@ -29,16 +30,27 @@ export class ThreadListComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.route.queryParams.subscribe((params: { page: number }) => {
+        this.qSub = this.route.queryParams.subscribe((params: { page: number }) => {
+            if (!params.page || params.page === this.page) {
+                return;
+            }
             this.page = params.page;
             if (this.board) {
                 this.update();
             }
         });
-        this.sub = this.route.data.subscribe((data: { board: Board }) => {
+        this.dSub = this.route.parent.data.subscribe((data: { board: Board }) => {
+            if (this.board === data.board) {
+                return;
+            }
             this.board = data.board;
             this.update();
         });
+    }
+
+    ngOnDestroy() {
+        this.qSub.unsubscribe();
+        this.dSub.unsubscribe();
     }
 
     private update() {

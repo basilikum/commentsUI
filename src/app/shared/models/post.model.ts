@@ -9,14 +9,19 @@ export class Post {
     public text: string;
     public creator: User;
     public created: Date;
+    public numberOfChildren: number;
+    public children: Post[] = [];
+    public showChildren = false;
+    public showReplyForm = false;
 
     constructor(data: any) {
         this.id = data.id;
-        this.origin = data.origin ? new Post(data.origin) : null;
-        this.parent = data.parent ? new Post(data.parent) : null;
+        this.origin = data.origin;
+        this.parent = data.parent;
         this.site = new Site(data.site);
         this.creator = new User(data.creator);
         this.created = new Date(data.created);
         this.text = data.text;
+        this.numberOfChildren = data.number_of_children || 0;
     }
 }

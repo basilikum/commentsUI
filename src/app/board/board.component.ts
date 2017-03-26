@@ -20,7 +20,7 @@ export class BoardComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.dataSub = this.route.data.subscribe((data: { board: Board }) => {
-            console.log('new board');
+            console.log('new board', data.board);
             this.board = data.board;
         });
     }
