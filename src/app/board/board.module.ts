@@ -10,8 +10,10 @@ import { ThreadListComponent } from './thread-list/thread-list.component';
 import { boardRouting } from './board.routing';
 import { BoardResolver } from './board.resolver';
 import { ThreadResolver } from './thread.resolver';
+import { OPResolver } from './op.resolver';
 import { ThreadNewComponent } from './thread-new/thread-new.component';
 import { PostComponent } from './post/post.component';
+import { VoteHandleComponent } from './vote-handle/vote-handle.component';
 
 
 @NgModule({
@@ -20,7 +22,8 @@ import { PostComponent } from './post/post.component';
         ThreadDetailComponent,
         ThreadListComponent,
         ThreadNewComponent,
-        PostComponent
+        PostComponent,
+        VoteHandleComponent
     ],
     imports: [
         SharedModule,
@@ -29,7 +32,8 @@ import { PostComponent } from './post/post.component';
     ],
     providers: [
         BoardResolver,
-        ThreadResolver
+        ThreadResolver,
+        OPResolver
     ]
 })
 export class BoardModule {}

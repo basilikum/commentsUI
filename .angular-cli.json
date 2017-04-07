@@ -19,7 +19,7 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "cmm",
       "styles": [
-        "styles.css"
+        "styles.less"
       ],
       "scripts": [
       ],

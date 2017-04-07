@@ -1,6 +1,6 @@
 <article class="post d-flex flex-row my-3">
     <div class="post-sidebar">
-        <cmm-user-label [user]="post.creator" [date]="post.created"></cmm-user-label>
+        <cmm-user-label [user]="post.creator" [date]="post.modified"></cmm-user-label>
     </div>
     <div class="d-flex flex-column w-100">
         <h4 *ngIf="title" class="px-3 mb-2">{{ title }}</h4>
@@ -8,17 +8,19 @@
             {{ post.text }}
         </div>
         <div class="post-controls px-3 py-1 d-flex flex-row">
-            <div class="align-self-start" *ngIf="post.numberOfChildren > 0">
-                <button class="btn btn-secondary" (click)="hideAnswers()" *ngIf="post.showChildren">
-                    Hide Replies
-                </button>
-                <button class="btn btn-outline-primary" (click)="showAnswers()" *ngIf="!post.showChildren">
-                    Show all {{ post.numberOfChildren }} Replies
+            <div class="align-self-start" *ngIf="post.numberOfChildren > 0 && openable">
+                <button class="btn btn-outline-primary icon-button toggle-button" [class.open]="post.showChildren" (click)="toggleAnswers()">
+                    <i class="material-icons">expand_more</i>
+                    <span>{{ post.numberOfChildren }} Replies</span>
                 </button>
             </div>
             <div class="ml-auto">
-                <button *ngIf="!post.showReplyForm" class="btn btn-secondary" (click)="reply()">Reply</button>
-                <button *ngIf="post.showReplyForm" class="btn btn-secondary" (click)="cancelReply()">Cancel Reply</button>
+
+                <button class="btn btn-outline-secondary text-muted icon-button" (click)="reply()">
+                    <i class="material-icons">reply</i>
+                    <span>Reply</span>
+                </button>
+                <cmm-vote-handle [post]="post"></cmm-vote-handle>
             </div>
         </div>
         <div class="p-3" *ngIf="post.showReplyForm">

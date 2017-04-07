@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs/Rx';
+import { Observable, Subscription } from 'rxjs/Rx';
 import { Board } from '../../shared/models/board.model';
 import { Thread } from '../../shared/models/thread.model';
 import { Post } from '../../shared/models/post.model';
@@ -20,27 +21,42 @@ export class ThreadDetailComponent implements OnInit {
     private paramsSub : Subscription;
     private page = 1;
     private replyToPost: Post = null;
+    private orderOptions = [
+        {
+            param: '-modified',
+            label: 'active (most recent first)'
+        },
+        {
+            param: 'modified',
+            label: 'active (most recent last)'
+        }
+    ];
 
     board: Board;
     thread: Thread;
+    post: Post;
     postList: PartialList<Post>;
+    orderForm: FormGroup;
 
     constructor(
         private route: ActivatedRoute,
+        private formBuilder: FormBuilder,
         private postService: PostService
     ) { }
 
     ngOnInit() {
         this.board = this.route.snapshot.parent.data['board'];
-        this.dataSub = this.route.data.subscribe((data: { thread: Thread }) => {
+        this.dataSub = this.route.data.subscribe((data: { thread: Thread, post: Post }) => {
             this.thread = data.thread;
+            this.post = data.post;
         });
         this.paramsSub = this.route.queryParams.subscribe((params: { page: number }) => {
             this.page = params.page;
-            if (this.thread) {
+            if (this.post) {
                 this.update();
             }
         });
+        this.initForm();
     }
 
     ngOnDestroy() {
@@ -50,7 +66,9 @@ export class ThreadDetailComponent implements OnInit {
 
     postOpened(post: Post) {
         console.log(post);
-        this.loadChildren(post);
+        this.loadChildren(post).subscribe((posts: Post[]) => {
+            post.children = posts;
+        });
     }
 
     replyOpened(post: Post) {
@@ -65,34 +83,43 @@ export class ThreadDetailComponent implements OnInit {
     }
 
     postCreated(post: Post) {
-        const parent = this.findParent(post.id);
+        const parent = this.findPost(post.parent);
+        console.log('created', post, parent);
         if (parent) {
-            this.loadChildren(parent);
-            parent.showChildren = true;
-            parent.children.push(post);
+            this.loadChildren(parent).subscribe((posts: Post[]) => {
+                parent.children = posts;
+                if (!parent.children.find(p => p.id === post.id)) {
+                    parent.children.push(post);
+                }
+                parent.showChildren = true;
+            });
         }
-
     }
 
-    private loadChildren(post: Post) {
+    private loadChildren(post: Post) : Observable<Post[]> {
         if (post.children.length >= post.numberOfChildren) {
-            return;
+            return Observable.of(post.children);
         }
-        this.postService.children(post).subscribe((posts: Post[]) => {
-            post.children = posts;
-        });
+        return this.postService.children(post);
     }
 
-    private findParent(postId: string) {
+    private findPost(postId: string) {
         return this.postList.results.find((post: Post) => post.id === postId);
     }
 
     private update() {
         this.postService.list({
-            parent: this.thread.post.id,
-            page: this.page || 1
+            parent: this.post.id,
+            page: this.page || 1,
+            ordering: '-created'
         }).subscribe((postList: PartialList<Post>) => {
             this.postList = postList;
+        });
+    }
+
+    private initForm() {
+        this.orderForm = this.formBuilder.group({
+            order: ['-modified', Validators.required]
         });
     }
 }

@@ -14,6 +14,7 @@ export class PostComponent implements OnInit {
 
     @Input() post: Post;
     @Input() title: string = '';
+    @Input() openable = false;
     @Output() opened = new EventEmitter();
     @Output() replyOpened = new EventEmitter();
     @Output() replyClosed = new EventEmitter();
@@ -31,6 +32,9 @@ export class PostComponent implements OnInit {
     }
 
     reply() {
+        if (this.post.showReplyForm) {
+            return;
+        }
         this.post.showReplyForm = true;
         this.replyOpened.emit(this.post);
     }
@@ -51,13 +55,11 @@ export class PostComponent implements OnInit {
         });
     }
 
-    showAnswers() {
-        this.post.showChildren = true;
-        this.opened.emit(this.post);
-    }
-
-    hideAnswers() {
-        this.post.showChildren = false;
+    toggleAnswers() {
+        this.post.showChildren = !this.post.showChildren;
+        if (this.post.showChildren) {
+            this.opened.emit(this.post);
+        }
     }
 
     private initForm() {

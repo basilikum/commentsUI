@@ -57,4 +57,5 @@ export class BoardService {
             (response: Response) => new Thread(response.json())
         );
     }
+
 }

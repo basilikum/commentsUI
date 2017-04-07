@@ -1,15 +1,25 @@
 <a class="btn btn-secondary" [routerLink]="['/board']" queryParamsHandling="preserve" role="button">Thread List</a>
 <hr>
 
-<cmm-post [post]="thread?.post"
+<cmm-post [post]="post"
           [title]="thread?.title"
           (replyOpened)="replyOpened($event)"
           (replyClosed)="replyClosed($event)"
           (postCreated)="postCreated($event)">
 </cmm-post>
 <hr>
+<form class="form-inline" (ngSubmit)="submitOrderForm()" [formGroup]="orderForm">
+    <div class="form-group">
+        <label for="postOrderOptions">Ordering</label>
+        <select class="form-control" id="postOrderOptions" formControlName="order">
+            <option *ngFor="let orderOption of orderOptions" [value]="orderOption.param">{{orderOption.label}}</option>
+        </select>
+    </div>
+</form>
+<hr>
 <div *ngFor="let post of postList?.results">
     <cmm-post [post]="post"
+              [openable]="true"
               (opened)="postOpened($event)"
               (replyOpened)="replyOpened($event)"
               (replyClosed)="replyClosed($event)"
