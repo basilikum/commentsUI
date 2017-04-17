@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule }   from '@angular/forms';
+
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { SharedModule } from '../shared/shared.module';
 
@@ -14,6 +17,11 @@ import { OPResolver } from './op.resolver';
 import { ThreadNewComponent } from './thread-new/thread-new.component';
 import { PostComponent } from './post/post.component';
 import { VoteHandleComponent } from './vote-handle/vote-handle.component';
+import { PostListComponent } from './post-list/post-list.component';
+import { PostOrderingComponent } from './post-ordering/post-ordering.component';
+import { PostCreateComponent } from './post-create/post-create.component';
+import { PostEditComponent } from './post-edit/post-edit.component';
+import { PostControlsComponent } from './post-controls/post-controls.component';
 
 
 @NgModule({
@@ -23,11 +31,18 @@ import { VoteHandleComponent } from './vote-handle/vote-handle.component';
         ThreadListComponent,
         ThreadNewComponent,
         PostComponent,
-        VoteHandleComponent
+        VoteHandleComponent,
+        PostListComponent,
+        PostOrderingComponent,
+        PostCreateComponent,
+        PostEditComponent,
+        PostControlsComponent
     ],
     imports: [
+        NgbModule,
         SharedModule,
         ReactiveFormsModule,
+        FormsModule,
         boardRouting
     ],
     providers: [

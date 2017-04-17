@@ -1,37 +1,51 @@
-<article class="post d-flex flex-row my-3">
-    <div class="post-sidebar">
-        <cmm-user-label [user]="post.creator" [date]="post.modified"></cmm-user-label>
-    </div>
-    <div class="d-flex flex-column w-100">
-        <h4 *ngIf="title" class="px-3 mb-2">{{ title }}</h4>
-        <div class="post-content px-3 pb-3">
-            {{ post.text }}
+<article class="post my-3">
+    <div class="d-flex flex-row">
+        <div class="post-sidebar">
+            <cmm-user-label [user]="post.creator"
+                            [date]="post.modified">
+            </cmm-user-label>
         </div>
-        <div class="post-controls px-3 py-1 d-flex flex-row">
-            <div class="align-self-start" *ngIf="post.numberOfChildren > 0 && openable">
-                <button class="btn btn-outline-primary icon-button toggle-button" [class.open]="post.showChildren" (click)="toggleAnswers()">
-                    <i class="material-icons">expand_more</i>
-                    <span>{{ post.numberOfChildren }} Replies</span>
-                </button>
+        <div class="d-flex flex-column justify-content-between w-100">
+            <h4 *ngIf="title" class="px-3 mb-2">{{ title }}</h4>
+            <div class="post-content p-3">
+                {{ post.text }}
             </div>
-            <div class="ml-auto">
-
-                <button class="btn btn-outline-secondary text-muted icon-button" (click)="reply()">
-                    <i class="material-icons">reply</i>
-                    <span>Reply</span>
-                </button>
-                <cmm-vote-handle [post]="post"></cmm-vote-handle>
-            </div>
-        </div>
-        <div class="p-3" *ngIf="post.showReplyForm">
-            <form (ngSubmit)="submitReply()" [formGroup]="replyForm">
-                <div class="form-group">
-                    <label class="sr-only" for="replyToPostInput{{ post.id }}">Reply</label>
-                    <textarea class="form-control" id="replyToPostInput{{ post.id }}" rows="15" formControlName="message" placeholder="Your reply here..."></textarea>
+            <div class="post-controls px-3 py-1 d-flex flex-row">
+                <div class="align-self-start" *ngIf="post.numberOfChildren > 0 && !externalChildHandling">
+                    <button class="btn btn-outline-primary icon-button no-border-button toggle-button" [class.open]="childrenVisible" (click)="toggleChildren()">
+                        <i class="material-icons">expand_more</i>
+                        <span>{{ post.numberOfChildren }} Replies</span>
+                    </button>
                 </div>
-                <button class="btn btn-success" type="submit" [disabled]="!replyForm.valid">Send Reply</button>
-                <button class="btn btn-secondary" type="button" (click)="cancelReply()">Cancel</button>
-            </form>
+                <div class="ml-auto">
+                    <cmm-post-controls [post]="post"
+                                       (openCreateForm)="showCreateForm()"
+                                       (openEditForm)="showEditForm()"
+                                       (remove)="deletePost()">
+                    </cmm-post-controls>
+                </div>
+            </div>
         </div>
+    </div>
+    <div class="p-3" *ngIf="createFormVisible">
+        <cmm-post-create [origin]="post"
+                         (create)="postCreated($event)"
+                         (close)="postCreateClosed($event)">
+        </cmm-post-create>
+    </div>
+    <div class="p-3" *ngIf="editFormVisible">
+        <cmm-post-edit [post]="post"
+                       (edit)="postEdited($event)"
+                       (close)="postEditClosed($event)">
+        </cmm-post-edit>
+    </div>
+    <div class="post-children pl-5" *ngIf="childrenVisible && post.numberOfChildren > 0 && !externalChildHandling">
+        <cmm-post
+            *ngFor="let childPost of children"
+            [post]="childPost"
+            [externalChildHandling]="true"
+            (create)="refresh($event)"
+            (remove)="refresh()">
+        </cmm-post>
     </div>
 </article>

@@ -12,7 +12,7 @@ export class Post {
     public created: Date;
     public modified: Date;
     public numberOfChildren: number;
-    public votes: VoteData;
+    public voteData: VoteData;
     public children: Post[] = [];
     public showChildren = false;
     public showReplyForm = false;
@@ -27,6 +27,6 @@ export class Post {
         this.modified = new Date(data.modified);
         this.text = data.text;
         this.numberOfChildren = data.number_of_children || 0;
-        this.votes = new VoteData(data.votes);
+        this.voteData = new VoteData(data.vote_entity);
     }
 }

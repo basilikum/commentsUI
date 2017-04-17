@@ -1,0 +1,8 @@
+<form class="form-inline">
+    <div class="form-group">
+        <label class="mr-2" for="postOrderOptions">Ordering</label>
+        <select class="form-control" id="postOrderOptions" (change)="orderChanged($event)">
+            <option *ngFor="let orderOption of orderOptions" [value]="orderOption.param" [selected]="orderOption.param == ordering">{{orderOption.label}}</option>
+        </select>
+    </div>
+</form>

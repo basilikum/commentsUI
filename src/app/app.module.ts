@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 
 import { BoardService } from './board/board.service';
 import { PostService } from './board/post.service';
+import { VoteService } from './board/vote.service';
 
 import { CoreModule }    from './core/core.module';
 import { SharedModule } from './shared/shared.module';
@@ -44,7 +45,8 @@ export class AuthConfig extends CustomConfig {
   ],
   providers: [
     BoardService,
-    PostService
+    PostService,
+    VoteService
   ],
   bootstrap: [AppComponent]
 })

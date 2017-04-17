@@ -1,11 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { Observable, Subscription } from 'rxjs/Rx';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs/Rx';
 import { Board } from '../../shared/models/board.model';
 import { Thread } from '../../shared/models/thread.model';
 import { Post } from '../../shared/models/post.model';
-import { PartialList } from '../../shared/partial-list';
 
 import { PostService } from '../post.service';
 
@@ -19,29 +17,18 @@ export class ThreadDetailComponent implements OnInit {
 
     private dataSub : Subscription;
     private paramsSub : Subscription;
+
     private page = 1;
-    private replyToPost: Post = null;
-    private orderOptions = [
-        {
-            param: '-modified',
-            label: 'active (most recent first)'
-        },
-        {
-            param: 'modified',
-            label: 'active (most recent last)'
-        }
-    ];
+    private ordering = '-modified';
 
     board: Board;
     thread: Thread;
     post: Post;
-    postList: PartialList<Post>;
-    orderForm: FormGroup;
 
     constructor(
+        private postService: PostService,
         private route: ActivatedRoute,
-        private formBuilder: FormBuilder,
-        private postService: PostService
+        private router: Router
     ) { }
 
     ngOnInit() {
@@ -50,13 +37,10 @@ export class ThreadDetailComponent implements OnInit {
             this.thread = data.thread;
             this.post = data.post;
         });
-        this.paramsSub = this.route.queryParams.subscribe((params: { page: number }) => {
-            this.page = params.page;
-            if (this.post) {
-                this.update();
-            }
+        this.paramsSub = this.route.queryParams.subscribe((params: { page: number, ordering: string }) => {
+            this.page = params.page || 1;
+            this.ordering = params.ordering || '-modified';
         });
-        this.initForm();
     }
 
     ngOnDestroy() {
@@ -64,62 +48,15 @@ export class ThreadDetailComponent implements OnInit {
         this.paramsSub.unsubscribe();
     }
 
-    postOpened(post: Post) {
-        console.log(post);
-        this.loadChildren(post).subscribe((posts: Post[]) => {
-            post.children = posts;
-        });
-    }
-
-    replyOpened(post: Post) {
-        if (this.replyToPost !== null && this.replyToPost !== post) {
-            this.replyToPost.showReplyForm = false;
-        }
-        this.replyToPost = post;
-    }
-
-    replyClosed(post: Post) {
-
-    }
-
-    postCreated(post: Post) {
-        const parent = this.findPost(post.parent);
-        console.log('created', post, parent);
-        if (parent) {
-            this.loadChildren(parent).subscribe((posts: Post[]) => {
-                parent.children = posts;
-                if (!parent.children.find(p => p.id === post.id)) {
-                    parent.children.push(post);
-                }
-                parent.showChildren = true;
+    childPostCreated(childPost: Post) {
+        this.postService.get(this.post.id).subscribe((post: Post) => {
+            this.post = post;
+            this.ordering = '-modified';
+            this.page = 1;
+            this.router.navigate([], {
+                queryParams: { page: this.page, ordering: this.ordering},
+                queryParamsHandling: 'merge'
             });
-        }
-    }
-
-    private loadChildren(post: Post) : Observable<Post[]> {
-        if (post.children.length >= post.numberOfChildren) {
-            return Observable.of(post.children);
-        }
-        return this.postService.children(post);
-    }
-
-    private findPost(postId: string) {
-        return this.postList.results.find((post: Post) => post.id === postId);
-    }
-
-    private update() {
-        this.postService.list({
-            parent: this.post.id,
-            page: this.page || 1,
-            ordering: '-created'
-        }).subscribe((postList: PartialList<Post>) => {
-            this.postList = postList;
-        });
-    }
-
-    private initForm() {
-        this.orderForm = this.formBuilder.group({
-            order: ['-modified', Validators.required]
         });
     }
 }

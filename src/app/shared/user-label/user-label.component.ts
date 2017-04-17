@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+import { UserService } from '../../core/user.service';
+
 import { User } from '../models/user.model';
 
 @Component({
@@ -12,8 +14,13 @@ export class UserLabelComponent implements OnInit {
     @Input() user: User;
     @Input() date: Date;
 
-    constructor() { }
+    loggedInUser: User;
+
+    constructor(
+        private userService: UserService
+    ) { }
 
     ngOnInit() {
+        this.loggedInUser = this.userService.getUser();
     }
 }

@@ -1,0 +1,15 @@
+<form (ngSubmit)="submit()" [formGroup]="postEditForm">
+    <div *ngIf="showAlert" class="alert alert-warning alert-dismissible fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="showAlert = false;">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <strong>A previous edit</strong> has been restored. Click <button type="button" class="btn-link alert-link p-0" (click)="reset()">here</button> if you want to work on the original message instead.
+    </div>
+    <div class="form-group">
+        <label class="sr-only" for="postEditInput{{ post.id }}">Edit Post</label>
+        <textarea class="form-control" id="postEditInput{{ post.id }}" rows="15" formControlName="message"></textarea>
+    </div>
+    <button class="btn btn-success" type="submit" [disabled]="!postEditForm.valid">Submit Edit</button>
+    <button class="btn btn-secondary" type="button" [disabled]="postEditForm.pristine" (click)="reset()">Reset</button>
+    <button class="btn btn-secondary" type="button" (click)="cancel()">Cancel</button>
+</form>

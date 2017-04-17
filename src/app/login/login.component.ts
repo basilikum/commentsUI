@@ -27,7 +27,10 @@ export class LoginComponent implements OnInit {
         this.auth.authenticate(platform)
             .subscribe({
                 error: (err: any) => console.log(err),
-                complete: () => this.router.navigate([''])
+                complete: () => {
+                    this.router.navigate(['']);
+                    console.log(this.auth.getPayload());
+                }
             });
     }
 

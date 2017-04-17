@@ -5,7 +5,6 @@ import { JwtHttp } from 'ng2-ui-auth';
 
 import { environment } from '../../environments/environment';
 import { Post } from '../shared/models/post.model';
-import { VoteData } from '../shared/models/vote-data.model';
 import { PartialList } from '../shared/partial-list';
 
 import { HelperService } from '../core/helper.service';
@@ -20,6 +19,12 @@ export class PostService {
         private http: JwtHttp,
         private helperService: HelperService
     ) { }
+
+    get(id: string): Observable<Post> {
+        return this.http.get(this.postsUrl + id + '/').map((response: Response) => {
+            return new Post(response.json());
+        });
+    }
 
     list(params: any): Observable<PartialList<Post>> {
         const qs = this.helperService.formatQueryParams(params);
@@ -42,10 +47,15 @@ export class PostService {
         });
     }
 
-    vote(post: Post, value: number): Observable<VoteData> {
-        const data = { own: value };
-        return this.http.patch(this.postsUrl + post.id + '/votes/', data).map((response: Response) => {
-            return new VoteData(response.json());
+    update(post: Post, data: any): Observable<Post> {
+        return this.http.patch(this.postsUrl + post.id + '/', data).map((response: Response) => {
+            return new Post(response.json());
+        });
+    }
+
+    remove(post: Post): Observable<boolean> {
+        return this.http.delete(this.postsUrl + post.id + '/').map((response: Response) => {
+            return true;
         });
     }
 }

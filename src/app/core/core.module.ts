@@ -9,6 +9,7 @@ import { IsLoggedOut } from './auth/is-logged-out.guard';
 import { HasValidUrlParam } from './has_valid_url_param.guard';
 import { UserLoginLinkComponent } from './user-login-link/user-login-link.component';
 import { HelperService } from './helper.service';
+import { UserService } from './user.service';
 
 @NgModule({
     imports: [
@@ -25,7 +26,8 @@ import { HelperService } from './helper.service';
         IsLoggedIn,
         IsLoggedOut,
         HasValidUrlParam,
-        HelperService
+        HelperService,
+        UserService
     ]
 })
 export class CoreModule {

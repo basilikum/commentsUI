@@ -14,11 +14,14 @@ html, body {
     font-size: 1.5rem;
 }
 
-.icon-button {
-    padding-left: 3rem;
-    position: relative;
+.no-border-button {
     border: none;
     cursor: pointer;
+}
+
+.icon-button {
+    padding-left: 2.5rem;
+    position: relative;
     .material-icons {
         position: absolute;
         left: 0.5rem;
@@ -39,4 +42,26 @@ html, body {
             -webkit-transform: rotate(180deg);
         }
     }
+}
+
+.inline-form-group {
+    label {
+        display: inline;
+    }
+}
+
+.highlight-corner {
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: 0;
+    top: 0;
+    border: 0.75rem solid #5cb85c;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+}
+
+.btn-link {
+    cursor: pointer;
+    padding: 0;
 }

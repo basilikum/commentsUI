@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 import { Post } from '../../shared/models/post.model';
+
 import { PartialList } from '../../shared/partial-list';
 import { PostService } from '../post.service';
 
@@ -14,57 +14,76 @@ export class PostComponent implements OnInit {
 
     @Input() post: Post;
     @Input() title: string = '';
-    @Input() openable = false;
-    @Output() opened = new EventEmitter();
-    @Output() replyOpened = new EventEmitter();
-    @Output() replyClosed = new EventEmitter();
-    @Output() postCreated = new EventEmitter();
+    @Input() externalChildHandling: boolean = false;
+    @Output() create = new EventEmitter();
+    @Output() remove = new EventEmitter();
 
-    replyForm: FormGroup;
+    childrenVisible = false;
+    createFormVisible = false;
+    editFormVisible = false;
+    children: Post[] = [];
 
     constructor(
-        private formBuilder: FormBuilder,
         private postService: PostService
     ) { }
 
     ngOnInit() {
-        this.initForm();
     }
 
-    reply() {
-        if (this.post.showReplyForm) {
-            return;
+    showCreateForm() {
+        this.editFormVisible = false;
+        this.createFormVisible = true;
+    }
+
+    showEditForm() {
+        this.createFormVisible = false;
+        this.editFormVisible = true;
+    }
+
+    deletePost() {
+        this.remove.emit(this.post);
+    }
+
+    postCreated(post: Post) {
+        this.createFormVisible = false;
+        if (this.externalChildHandling) {
+            this.create.emit(post);
+        } else {
+            this.refresh();
         }
-        this.post.showReplyForm = true;
-        this.replyOpened.emit(this.post);
     }
 
-    cancelReply() {
-        this.post.showReplyForm = false;
-        this.replyClosed.emit(this.post);
+    postCreateClosed(text: string) {
+        this.createFormVisible = false;
     }
 
-    submitReply() {
-        this.postService.create({
-            text: this.replyForm.value.message,
-            origin: this.post.id,
-            site: 'aaaaaaa'
-        }).subscribe((post: Post) => {
-            this.post.showReplyForm = false;
-            this.postCreated.emit(post);
+    postEdited(post: Post) {
+        this.editFormVisible = false;
+        this.post.text = post.text;
+    }
+
+    postEditClosed(text: string) {
+        this.editFormVisible = false;
+    }
+
+    toggleChildren() {
+        this.childrenVisible = !this.childrenVisible;
+        if (this.childrenVisible && this.children.length != this.post.numberOfChildren) {
+            this.loadChildren();
+        }
+    }
+
+    refresh() {
+        this.postService.get(this.post.id).subscribe((post: Post) => {
+            this.post = post;
+            this.loadChildren();
+            this.childrenVisible = true;
         });
     }
 
-    toggleAnswers() {
-        this.post.showChildren = !this.post.showChildren;
-        if (this.post.showChildren) {
-            this.opened.emit(this.post);
-        }
-    }
-
-    private initForm() {
-        this.replyForm = this.formBuilder.group({
-            message: ['', [Validators.required, Validators.maxLength(65536)]]
+    private loadChildren() {
+        this.postService.children(this.post).subscribe((posts: Post[]) => {
+            this.children = posts;
         });
     }
 }

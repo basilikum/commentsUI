@@ -3,7 +3,7 @@
         Login
     </a>
     <span *ngSwitchCase="true">
-        <a class="btn btn-link" [routerLink]="['/user']"><i class="material-icons">person</i></a>
+        <a class="btn btn-link" [routerLink]="['/user']"><i class="material-icons">person</i> {{ getUser().name }}</a>
         <button class="btn btn-link" (click)="logout()">Logout</button>
     </span>
 </ng-container>

@@ -1,8 +1,12 @@
-<h4>
-  {{ board?.site.netloc }}
+<a class="btn btn-outline-secondary no-border-button text-muted" [routerLink]="['/board']" queryParamsHandling="preserve">
+  <b>{{ board?.site.netloc }}</b>
   <small class="text-muted">{{ board?.path }}</small>
-</h4>
-
+</a>
+<a class="btn btn-outline-primary no-border-button icon-button" [attr.href]="board.url" target="_blank">
+    <span>Open</span>
+    <i class="material-icons">chevron_right</i>
+</a>
+<hr>
 <router-outlet></router-outlet>
 <!--
 <cmm-thread-list [boardId]="board?.id"></cmm-thread-list>

@@ -1,22 +1,16 @@
 <div class="vote-handle">
     <button type="button"
-            class="btn icon-button text-muted"
-            [class.text-muted]="post.votes.own !== 1"
-            [class.btn-outline-secondary]="post.votes.own !== 1"
-            [class.btn-outline-success]="post.votes.own === 1"
+            class="btn btn-outline-secondary icon-button no-border-button text-muted"
             (click)="voteUp()">
-                <i class="material-icons">thumb_up</i>
-                <span>{{ post.votes.plus }}</span>
+                <i class="material-icons"
+                   [class.text-success]="voteData.own === 1">thumb_up</i>
+                <span>{{ voteData.plus }}</span>
     </button>
-
     <button type="button"
-            class="btn icon-button text-muted"
-            [class.text-muted]="post.votes.own !== -1"
-            [class.btn-outline-secondary]="post.votes.own !== -1"
-            [class.btn-outline-danger]="post.votes.own === -1"
+            class="btn btn-outline-secondary icon-button no-border-button text-muted"
             (click)="voteDown()">
-                <i class="material-icons">thumb_down</i>
-                <span>{{ post.votes.minus }}</span>
+                <i class="material-icons"
+                   [class.text-danger]="voteData.own === -1">thumb_down</i>
+                <span>{{ voteData.minus }}</span>
     </button>
-
 </div>

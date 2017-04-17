@@ -1,0 +1,19 @@
+<nav aria-label="list navigation">
+    <ul class="pagination">
+        <li class="page-item" [class.disabled]="partialList.page <= 1">
+            <a class="page-link" [routerLink]="['.']" [queryParams]="getQueryParamObject(partialList.page - 1)" queryParamsHandling="merge" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+            </a>
+        </li>
+        <li class="page-item" *ngFor="let i of pages" [class.active]="i === partialList.page">
+            <a class="page-link" [routerLink]="['.']" [queryParams]="getQueryParamObject(i)" queryParamsHandling="merge">{{ i < 0 ? '...' : i }}</a>
+        </li>
+        <li class="page-item" [class.disabled]="partialList.page >= partialList?.numberOfPages">
+            <a class="page-link" [routerLink]="['.']" [queryParams]="getQueryParamObject(partialList.page + 1)" queryParamsHandling="merge" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+            </a>
+        </li>
+    </ul>
+</nav>
