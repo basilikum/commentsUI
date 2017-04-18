@@ -1,5 +1,5 @@
 <div class="user-label p-3 bg-faded">
     <div class="highlight-corner" *ngIf="loggedInUser?.id === user.id"></div>
-    <a [routerLink]="['/user']">{{ user.name }}</a>
-    <small>{{ date | date: 'dd/MM/yyyy HH:mm' }}</small>
+    <a [routerLink]="['/user']">{{ user.name }}</a><br>
+    <small>{{ date | date: 'short' }}</small>
 </div>

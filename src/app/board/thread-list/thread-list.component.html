@@ -1,13 +1,13 @@
 <a class="btn btn-success" [routerLink]="['/board', 'new']" queryParamsHandling="preserve">New Thread</a>
 <hr>
 
-<table class="table table-hover table-sm thread-list">
+<table class="table thread-list">
     <colgroup>
         <col width="*">
         <col width="150px">
         <col width="150px">
     </colgroup>
-    <thead class="thead-default">
+    <thead>
         <tr>
             <th>Title</th>
             <th>Created by</th>
@@ -15,10 +15,10 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let thread of threadList?.results" [routerLink]="['/board', thread.id]" [queryParams]="{ url: board.url }">
-            <td>{{ thread.title }}</td>
+        <tr *ngFor="let thread of threadList?.results">
+            <td><a [routerLink]="['/board', thread.id]" [queryParams]="{ url: board.url }">{{ thread.title }}</a></td>
             <td>{{ thread.creator.name }}</td>
-            <td>{{ thread.created | date: 'dd/MM/yyyy HH:mm' }}</td>
+            <td>{{ thread.created | date: 'short' }}</td>
         </tr>
     </tbody>
 </table>

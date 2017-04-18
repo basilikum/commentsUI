@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
@@ -8,9 +8,9 @@ import { Ng2UiAuthModule, CustomConfig } from 'ng2-ui-auth';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
+import { SettingsService } from './settings.service';
 
 import { BoardService } from './board/board.service';
-import { PostService } from './board/post.service';
 import { VoteService } from './board/vote.service';
 
 import { CoreModule }    from './core/core.module';
@@ -45,8 +45,11 @@ export class AuthConfig extends CustomConfig {
   ],
   providers: [
     BoardService,
-    PostService,
-    VoteService
+    VoteService,
+    {
+      provide: LOCALE_ID,
+      useValue: (navigator.language || navigator['browserLanguage'] || 'en').split('-')[0]
+    }
   ],
   bootstrap: [AppComponent]
 })
