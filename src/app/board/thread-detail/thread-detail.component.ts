@@ -54,9 +54,16 @@ export class ThreadDetailComponent implements OnInit {
             this.ordering = '-modified';
             this.page = 1;
             this.router.navigate([], {
-                queryParams: { page: this.page, ordering: this.ordering},
+                queryParams: { page: this.page, ordering: this.ordering },
                 queryParamsHandling: 'merge'
             });
+        });
+    }
+
+    postRemoved(post: Post) {
+        this.router.navigate(['../'], {
+            queryParams: { url: this.board.url },
+            relativeTo: this.route
         });
     }
 }

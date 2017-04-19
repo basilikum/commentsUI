@@ -3,7 +3,8 @@
 <cmm-post [post]="post"
           [title]="thread?.title"
           [externalChildHandling]="true"
-          (create)="childPostCreated($event)">
+          (create)="childPostCreated($event)"
+          (remove)="postRemoved($event)">
 </cmm-post>
 <hr>
 

@@ -3,12 +3,14 @@
 
 <table class="table thread-list">
     <colgroup>
+        <col width="40px">
         <col width="*">
         <col width="150px">
         <col width="150px">
     </colgroup>
     <thead>
         <tr>
+            <th></th>
             <th>Title</th>
             <th>Created by</th>
             <th>Created at</th>
@@ -16,9 +18,10 @@
     </thead>
     <tbody>
         <tr *ngFor="let thread of threadList?.results">
-            <td><a [routerLink]="['/board', thread.id]" [queryParams]="{ url: board.url }">{{ thread.title }}</a></td>
-            <td>{{ thread.creator.name }}</td>
-            <td>{{ thread.created | date: 'short' }}</td>
+            <td class="align-middle text-center"><cmm-vote-results [voteData]="thread.originalPost.voteData"></cmm-vote-results></td>
+            <td class="align-middle"><a [routerLink]="['/board', thread.id]" [queryParams]="{ url: board.url }">{{ thread.title }}</a></td>
+            <td class="align-middle">{{ thread.creator.name }}</td>
+            <td class="align-middle">{{ thread.created | date: 'short' }}</td>
         </tr>
     </tbody>
 </table>

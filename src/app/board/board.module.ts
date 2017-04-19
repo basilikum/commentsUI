@@ -25,6 +25,7 @@ import { PostControlsComponent } from './post-controls/post-controls.component';
 import { PostDeleteConfirmModalComponent } from './post-delete-confirm-modal/post-delete-confirm-modal.component';
 
 import { PostService } from './post.service';
+import { VoteResultsComponent } from './vote-results/vote-results.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { PostService } from './post.service';
         PostCreateComponent,
         PostEditComponent,
         PostControlsComponent,
-        PostDeleteConfirmModalComponent
+        PostDeleteConfirmModalComponent,
+        VoteResultsComponent
     ],
     imports: [
         NgbModule,

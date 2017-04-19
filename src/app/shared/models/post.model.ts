@@ -21,7 +21,7 @@ export class Post {
         this.id = data.id;
         this.origin = data.origin;
         this.parent = data.parent;
-        this.site = new Site(data.site);
+        this.site = data.site ? new Site(data.site) : null;
         this.creator = new User(data.creator);
         this.created = new Date(data.created);
         this.modified = new Date(data.modified);
