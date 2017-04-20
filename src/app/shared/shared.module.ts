@@ -8,6 +8,7 @@ import { DataService } from './data.service';
 import { UserLabelComponent } from './user-label/user-label.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { CountdownTimerComponent } from './countdown-timer/countdown-timer.component';
+import { ClickIfDirective } from './click-if.directive';
 
 
 @NgModule({
@@ -23,12 +24,14 @@ import { CountdownTimerComponent } from './countdown-timer/countdown-timer.compo
         CommonModule,
         UserLabelComponent,
         PaginationComponent,
-        CountdownTimerComponent
+        CountdownTimerComponent,
+        ClickIfDirective
     ],
     declarations: [
         UserLabelComponent,
         PaginationComponent,
-        CountdownTimerComponent
+        CountdownTimerComponent,
+        ClickIfDirective
     ]
 })
 export class SharedModule {}

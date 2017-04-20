@@ -1,16 +1,37 @@
+<template #popContent>Operation Not Allowed!</template>
 <div class="vote-handle">
     <button type="button"
-            class="btn btn-outline-secondary icon-button no-border-button text-muted"
-            (click)="voteUp()">
+            class="btn icon-button no-border-button"
+            [class.btn-outline-secondary]="voteData.own !== 1"
+            [class.text-muted]="voteData.own !== 1"
+            [class.btn-success]="voteData.own === 1"
+            [ngbPopover]="popContent"
+            popoverTitle="Permitted"
+            triggers="manual"
+            #p="ngbPopover"
+            cmmClickIf
+            (cmmClickElse)="p.open()"
+            (cmmClick)="voteUp()">
                 <i class="material-icons"
-                   [class.text-success]="voteData.own === 1">thumb_up</i>
+                   [class.text-success]="voteData.own !== 1"
+                   [class.text-white]="voteData.own === 1">arrow_drop_up</i>
                 <span>{{ voteData.plus }}</span>
     </button>
     <button type="button"
-            class="btn btn-outline-secondary icon-button no-border-button text-muted"
-            (click)="voteDown()">
+            class="btn icon-button no-border-button"
+            [class.btn-outline-secondary]="voteData.own !== -1"
+            [class.text-muted]="voteData.own !== -1"
+            [class.btn-danger]="voteData.own === -1"
+            [ngbPopover]="popContent"
+            popoverTitle="Permitted"
+            triggers="manual"
+            #p="ngbPopover"
+            cmmClickIf
+            (cmmClickElse)="p.open()"
+            (cmmClick)="voteDown()">
                 <i class="material-icons"
-                   [class.text-danger]="voteData.own === -1">thumb_down</i>
+                   [class.text-danger]="voteData.own !== -1"
+                   [class.text-white]="voteData.own === -1">arrow_drop_down</i>
                 <span>{{ voteData.minus }}</span>
     </button>
 </div>

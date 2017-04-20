@@ -1,5 +1,22 @@
 .vote-results {
+    white-space: nowrap;
+    cursor: default;
+    user-select: none;
     > * {
-        display: block;
+        vertical-align: middle;
+    }
+    > small {
+        line-height: 0.8rem;
+        display: inline-block;
+    }
+    > i {
+        font-size: 1.8rem;
+        margin-left: -0.25rem;
+        margin-right: -0.25rem;
+        &.small {
+            font-size: 0.8rem;
+            margin-left: 0.25rem;
+            margin-right: 0.25rem;
+        }
     }
 }

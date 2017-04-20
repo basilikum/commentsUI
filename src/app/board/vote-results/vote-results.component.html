@@ -1,8 +1,10 @@
-<div class="vote-results text-muted">
+<div class="vote-results text-muted"
+     placement="top"
+     [ngbTooltip]="tipContent">
+    <i *ngIf="value > 0" class="material-icons text-success">arrow_drop_up</i>
+    <i *ngIf="value < 0" class="material-icons text-danger">arrow_drop_down</i>
+    <i *ngIf="value === 0" class="material-icons small text-light">fiber_manual_record</i>
     <small>
-        {{ voteData.plus }}
-    </small>
-    <small>
-        {{ voteData.minus }}
+        {{ value }}
     </small>
 </div>

@@ -2,26 +2,33 @@
 <hr>
 
 <table class="table thread-list">
-    <colgroup>
-        <col width="40px">
-        <col width="*">
-        <col width="150px">
-        <col width="150px">
-    </colgroup>
-    <thead>
-        <tr>
-            <th></th>
-            <th>Title</th>
-            <th>Created by</th>
-            <th>Created at</th>
-        </tr>
-    </thead>
     <tbody>
         <tr *ngFor="let thread of threadList?.results">
-            <td class="align-middle text-center"><cmm-vote-results [voteData]="thread.originalPost.voteData"></cmm-vote-results></td>
-            <td class="align-middle"><a [routerLink]="['/board', thread.id]" [queryParams]="{ url: board.url }">{{ thread.title }}</a></td>
-            <td class="align-middle">{{ thread.creator.name }}</td>
-            <td class="align-middle">{{ thread.created | date: 'short' }}</td>
+            <td class="align-middle text-center text-muted votes pr-0">
+                <div class="pr-1">
+                    <span>{{ thread.originalPost.voteData.plus }}</span><br>
+                    <i class="material-icons text-success">arrow_drop_up</i>
+                </div>
+            </td>
+            <td class="align-middle text-center text-muted votes pl-0">
+                <div class="pl-1">
+                    <span>{{ thread.originalPost.voteData.minus }}</span><br>
+                    <i class="material-icons text-danger">arrow_drop_down</i>
+                </div>
+            </td>
+            <td class="align-middle">
+                <a [routerLink]="['/board', thread.id]" [queryParams]="{ url: board.url }">{{ thread.title }}</a><br>
+                <a [routerLink]="['/user']"><small>{{ thread.creator.name }}</small></a>
+                <small>{{ thread.created | date: 'short' }}</small>
+            </td>
+            <td class="align-middle text-center stats">
+                {{ thread.numberOfChildren }}<br>
+                <small>Replies</small>
+            </td>
+            <td class="align-middle text-center stats">
+                {{ thread.numberOfDescendants }}<br>
+                <small>Posts</small>
+            </td>
         </tr>
     </tbody>
 </table>

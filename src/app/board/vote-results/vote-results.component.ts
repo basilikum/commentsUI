@@ -9,9 +9,13 @@ import { VoteData } from '../../shared/models/vote-data.model';
 export class VoteResultsComponent implements OnInit {
 
     @Input() voteData: VoteData;
+    value = 0;
+    tipContent = '';
 
     constructor() { }
 
     ngOnInit() {
+        this.value = this.voteData.plus - this.voteData.minus;
+        this.tipContent = '+' + this.voteData.plus + ' / -' + this.voteData.minus;
     }
 }
