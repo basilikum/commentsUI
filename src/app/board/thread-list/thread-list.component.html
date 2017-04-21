@@ -1,37 +1,53 @@
-<a class="btn btn-success" [routerLink]="['/board', 'new']" queryParamsHandling="preserve">New Thread</a>
-<hr>
-
-<table class="table thread-list">
-    <tbody>
-        <tr *ngFor="let thread of threadList?.results">
-            <td class="align-middle text-center text-muted votes pr-0">
-                <div class="pr-1">
-                    <span>{{ thread.originalPost.voteData.plus }}</span><br>
-                    <i class="material-icons text-success">arrow_drop_up</i>
-                </div>
-            </td>
-            <td class="align-middle text-center text-muted votes pl-0">
-                <div class="pl-1">
-                    <span>{{ thread.originalPost.voteData.minus }}</span><br>
-                    <i class="material-icons text-danger">arrow_drop_down</i>
-                </div>
-            </td>
-            <td class="align-middle">
-                <a [routerLink]="['/board', thread.id]" [queryParams]="{ url: board.url }">{{ thread.title }}</a><br>
-                <a [routerLink]="['/user']"><small>{{ thread.creator.name }}</small></a>
-                <small>{{ thread.created | date: 'short' }}</small>
-            </td>
-            <td class="align-middle text-center stats">
-                {{ thread.numberOfChildren }}<br>
-                <small>Replies</small>
-            </td>
-            <td class="align-middle text-center stats">
-                {{ thread.numberOfDescendants }}<br>
-                <small>Posts</small>
-            </td>
-        </tr>
-    </tbody>
-</table>
-<cmm-pagination *ngIf="threadList" [partialList]="threadList"
-                pageQueryParamName="page">
-</cmm-pagination>
+<div *ngIf="threadList?.count > 0">
+    <div class="d-flex flex-row align-items-center">
+        <a class="btn btn-success" cmmClickIfAuth [routerLink]="['/board', 'new']" queryParamsHandling="preserve">New Thread</a>
+        <cmm-select-query-param class="ml-auto"
+                                [selected]="ordering"
+                                [options]="orderOptions"
+                                [extras]="{ page: 1 }"
+                                paramName="ordering"
+                                label="Ordering">
+        </cmm-select-query-param>
+    </div>
+    <table class="table thread-list mt-3">
+        <tbody>
+            <tr *ngFor="let thread of threadList?.results">
+                <td class="align-middle text-center text-muted votes pr-0">
+                    <div class="pr-1">
+                        <span>{{ thread.originalPost.voteData.plus }}</span><br>
+                        <i class="material-icons text-success">arrow_drop_up</i>
+                    </div>
+                </td>
+                <td class="align-middle text-center text-muted votes pl-0">
+                    <div class="pl-1">
+                        <span>{{ thread.originalPost.voteData.minus }}</span><br>
+                        <i class="material-icons text-danger">arrow_drop_down</i>
+                    </div>
+                </td>
+                <td class="align-middle">
+                    <a [routerLink]="['/board', thread.id]" [queryParams]="{ url: board.url }">{{ thread.title }}</a><br>
+                    <a [routerLink]="['/user']"><small>{{ thread.creator.name }}</small></a>
+                    <small>{{ thread.created | date: 'short' }}</small>
+                </td>
+                <td class="align-middle text-center stats">
+                    {{ thread.numberOfChildren }}<br>
+                    <small>Replies</small>
+                </td>
+                <td class="align-middle text-center stats">
+                    {{ thread.numberOfDescendants }}<br>
+                    <small>Posts</small>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <cmm-pagination *ngIf="threadList?.numberOfPages > 1" [partialList]="threadList"
+                    pageQueryParamName="page">
+    </cmm-pagination>
+</div>
+<div class="p-5 text-center" *ngIf="threadList?.count === 0">
+    <h4 class="card-title">Be the first one to post something here!</h4>
+    <a [routerLink]="['/board', 'new']"
+       queryParamsHandling="preserve"
+       cmmClickIfAuth
+       class="btn btn-success">Create Thread</a>
+</div>

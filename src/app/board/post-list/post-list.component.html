@@ -1,14 +1,19 @@
 <div class="d-flex flex-row align-items-center">
 
-    <cmm-pagination *ngIf="postList && postList.numberOfPages > 1"
+    <cmm-pagination *ngIf="postList?.numberOfPages > 1"
                     class="align-self-end"
                     [partialList]="postList"
                     pageQueryParamName="page">
     </cmm-pagination>
 
-    <cmm-post-ordering class="ml-auto"
-                       [ordering]="ordering">
-    </cmm-post-ordering>
+    <cmm-select-query-param *ngIf="postList?.count > 0"
+                            class="ml-auto"
+                            [selected]="ordering"
+                            [options]="orderOptions"
+                            [extras]="{ page: 1 }"
+                            paramName="ordering"
+                            label="Ordering">
+    </cmm-select-query-param>
 </div>
 <div *ngFor="let post of postList?.results">
     <hr>
@@ -16,7 +21,7 @@
               (remove)="postRemoved($event)">
     </cmm-post>
 </div>
-<div *ngIf="postList && postList.numberOfPages > 1">
+<div *ngIf="postList?.numberOfPages > 1">
     <hr>
     <cmm-pagination [partialList]="postList"
                     pageQueryParamName="page">

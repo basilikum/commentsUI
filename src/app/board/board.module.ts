@@ -18,7 +18,6 @@ import { ThreadNewComponent } from './thread-new/thread-new.component';
 import { PostComponent } from './post/post.component';
 import { VoteHandleComponent } from './vote-handle/vote-handle.component';
 import { PostListComponent } from './post-list/post-list.component';
-import { PostOrderingComponent } from './post-ordering/post-ordering.component';
 import { PostCreateComponent } from './post-create/post-create.component';
 import { PostEditComponent } from './post-edit/post-edit.component';
 import { PostControlsComponent } from './post-controls/post-controls.component';
@@ -37,7 +36,6 @@ import { VoteResultsComponent } from './vote-results/vote-results.component';
         PostComponent,
         VoteHandleComponent,
         PostListComponent,
-        PostOrderingComponent,
         PostCreateComponent,
         PostEditComponent,
         PostControlsComponent,

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Rx';
 import { JwtHttp } from 'ng2-ui-auth';
 
 import { environment } from '../../environments/environment';
+import { HelperService } from '../core/helper.service';
 import { Board } from '../shared/models/board.model';
 import { Thread } from '../shared/models/thread.model';
 import { PartialList } from '../shared/partial-list';
@@ -14,7 +15,10 @@ export class BoardService {
 
     private boardsUrl = environment.apiBaseUrl + '/boards/';
 
-    constructor(private http: JwtHttp) { }
+    constructor(
+        private http: JwtHttp,
+        private helperService: HelperService
+    ) { }
 
     getBoard(id: string): Observable<Board> {
         return this.http.get(this.boardsUrl + id + '/').map(
@@ -31,12 +35,10 @@ export class BoardService {
         );
     }
 
-    getThreadList(id: string, page: number): Observable<PartialList<Thread>> {
-        var qs = '?b=' + id;
-        if (page > 1) {
-            qs += '&page=' + page;
-        }
-        return this.http.get(this.boardsUrl + 'threads/' + qs).map(
+    threads(id: string, params: any): Observable<PartialList<Thread>> {
+        const p = Object.assign({ b: id }, params);
+        const qs = this.helperService.formatQueryParams(p);
+        return this.http.get(this.boardsUrl + 'threads/?' + qs).map(
             (response: Response) => new PartialList<Thread>(Thread, response.json())
         );
     }

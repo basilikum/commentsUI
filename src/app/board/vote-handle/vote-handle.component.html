@@ -5,13 +5,7 @@
             [class.btn-outline-secondary]="voteData.own !== 1"
             [class.text-muted]="voteData.own !== 1"
             [class.btn-success]="voteData.own === 1"
-            [ngbPopover]="popContent"
-            popoverTitle="Permitted"
-            triggers="manual"
-            #p="ngbPopover"
-            cmmClickIf
-            (cmmClickElse)="p.open()"
-            (cmmClick)="voteUp()">
+            (cmmClickIfAuth)="voteUp()">
                 <i class="material-icons"
                    [class.text-success]="voteData.own !== 1"
                    [class.text-white]="voteData.own === 1">arrow_drop_up</i>
@@ -22,13 +16,7 @@
             [class.btn-outline-secondary]="voteData.own !== -1"
             [class.text-muted]="voteData.own !== -1"
             [class.btn-danger]="voteData.own === -1"
-            [ngbPopover]="popContent"
-            popoverTitle="Permitted"
-            triggers="manual"
-            #p="ngbPopover"
-            cmmClickIf
-            (cmmClickElse)="p.open()"
-            (cmmClick)="voteDown()">
+            (cmmClickIfAuth)="voteDown()">
                 <i class="material-icons"
                    [class.text-danger]="voteData.own !== -1"
                    [class.text-white]="voteData.own === -1">arrow_drop_down</i>

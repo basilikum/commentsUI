@@ -16,6 +16,33 @@ export class PostListComponent implements OnInit, OnChanges {
     @Input() ordering: string;
     @Input() parent: Post;
 
+    orderOptions = [
+        {
+            param: '-modified',
+            label: 'most recent'
+        },
+        {
+            param: 'modified',
+            label: 'least recent'
+        },
+        {
+            param: '-vote_entity__total',
+            label: 'highest rating'
+        },
+        {
+            param: 'vote_entity__total',
+            label: 'lowest rating'
+        },
+        {
+            param: '-number_of_children',
+            label: 'longest conversation'
+        },
+        {
+            param: 'number_of_children',
+            label: 'shortest conversation'
+        }
+    ];
+
     postList: PartialList<Post>;
 
     constructor(

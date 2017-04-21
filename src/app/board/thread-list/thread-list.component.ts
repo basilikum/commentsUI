@@ -17,12 +17,24 @@ import { BoardService } from '../board.service';
 })
 export class ThreadListComponent implements OnInit, OnDestroy {
 
+    board: Board;
+    threadList: PartialList<Thread>;
+    ordering = '';
+    orderOptions = [
+        {
+            param: '-created',
+            label: 'most recent'
+        },
+        {
+            param: 'created',
+            label: 'least recent'
+        }
+    ];
+
+
     private dSub: Subscription;
     private qSub: Subscription;
     private page = 1;
-
-    board: Board;
-    threadList: PartialList<Thread>;
 
     constructor(
         private boardService: BoardService,
@@ -30,17 +42,15 @@ export class ThreadListComponent implements OnInit, OnDestroy {
     ) { }
 
     ngOnInit() {
-        this.qSub = this.route.queryParams.subscribe((params: { page: number }) => {
-            if (!params.page || params.page === this.page) {
-                return;
-            }
+        this.qSub = this.route.queryParams.subscribe((params: { page: number, ordering: string }) => {
             this.page = params.page;
+            this.ordering = params.ordering || '-created';
             if (this.board) {
                 this.update();
             }
         });
         this.dSub = this.route.parent.data.subscribe((data: { board: Board }) => {
-            if (this.board === data.board) {
+            if (this.board && this.board.id === data.board.id) {
                 return;
             }
             this.board = data.board;
@@ -55,9 +65,13 @@ export class ThreadListComponent implements OnInit, OnDestroy {
 
     private update() {
         this.boardService
-            .getThreadList(this.board.id, this.page)
+            .threads(this.board.id, {
+                page: this.page,
+                ordering: this.ordering
+            })
             .subscribe((threadList: PartialList<Thread>) => {
             this.threadList = threadList;
+            console.log(threadList);
         });
     }
 }

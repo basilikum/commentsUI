@@ -1,0 +1,9 @@
+<div class="modal-header">
+    <h4 class="modal-title">Login Required</h4>
+</div>
+<div class="modal-body">
+    <p>Only Registered user can perform this action. Would you like to <a (click)="activeModal.close()" [routerLink]="['/login']">login</a>?</p>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="activeModal.close()">Close</button>
+</div>

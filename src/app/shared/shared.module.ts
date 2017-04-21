@@ -8,7 +8,9 @@ import { DataService } from './data.service';
 import { UserLabelComponent } from './user-label/user-label.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { CountdownTimerComponent } from './countdown-timer/countdown-timer.component';
-import { ClickIfDirective } from './click-if.directive';
+import { ClickIfAuthDirective } from './click-if-auth.directive';
+import { LoginRequiredModalComponent } from './login-required-modal/login-required-modal.component';
+import { SelectQueryParamComponent } from './select-query-param/select-query-param.component';
 
 
 @NgModule({
@@ -25,13 +27,19 @@ import { ClickIfDirective } from './click-if.directive';
         UserLabelComponent,
         PaginationComponent,
         CountdownTimerComponent,
-        ClickIfDirective
+        ClickIfAuthDirective,
+        SelectQueryParamComponent
     ],
     declarations: [
         UserLabelComponent,
         PaginationComponent,
         CountdownTimerComponent,
-        ClickIfDirective
+        ClickIfAuthDirective,
+        LoginRequiredModalComponent,
+        SelectQueryParamComponent
+    ],
+    entryComponents: [
+        LoginRequiredModalComponent
     ]
 })
 export class SharedModule {}

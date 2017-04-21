@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PostOrderingComponent } from './post-ordering.component';
+import { LoginRequiredModalComponent } from './login-required-modal.component';
 
-describe('PostOrderingComponent', () => {
-  let component: PostOrderingComponent;
-  let fixture: ComponentFixture<PostOrderingComponent>;
+describe('LoginRequiredModalComponent', () => {
+  let component: LoginRequiredModalComponent;
+  let fixture: ComponentFixture<LoginRequiredModalComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PostOrderingComponent ]
+      declarations: [ LoginRequiredModalComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PostOrderingComponent);
+    fixture = TestBed.createComponent(LoginRequiredModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

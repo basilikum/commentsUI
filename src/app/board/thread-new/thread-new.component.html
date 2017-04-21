@@ -6,7 +6,7 @@
     </div>
     <div class="form-group">
         <label for="threadMessage">Message</label>
-        <textarea class="form-control" id="threadMessage" placeholder="Message" formControlName="message"></textarea>
+        <textarea class="form-control" id="threadMessage" placeholder="Message" formControlName="message" rows="15"></textarea>
     </div>
     <button class="btn btn-success" type="submit" [disabled]="!threadCreateForm.valid">Create</button>
     <a class="btn btn-secondary" [routerLink]="['/board']" queryParamsHandling="preserve" role="button">Cancel</a>
