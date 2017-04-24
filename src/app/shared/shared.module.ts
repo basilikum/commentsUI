@@ -11,6 +11,7 @@ import { CountdownTimerComponent } from './countdown-timer/countdown-timer.compo
 import { ClickIfAuthDirective } from './click-if-auth.directive';
 import { LoginRequiredModalComponent } from './login-required-modal/login-required-modal.component';
 import { SelectQueryParamComponent } from './select-query-param/select-query-param.component';
+import { AutoLinksPipe } from './auto-links.pipe';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { SelectQueryParamComponent } from './select-query-param/select-query-par
         PaginationComponent,
         CountdownTimerComponent,
         ClickIfAuthDirective,
-        SelectQueryParamComponent
+        SelectQueryParamComponent,
+        AutoLinksPipe
     ],
     declarations: [
         UserLabelComponent,
@@ -36,7 +38,8 @@ import { SelectQueryParamComponent } from './select-query-param/select-query-par
         CountdownTimerComponent,
         ClickIfAuthDirective,
         LoginRequiredModalComponent,
-        SelectQueryParamComponent
+        SelectQueryParamComponent,
+        AutoLinksPipe
     ],
     entryComponents: [
         LoginRequiredModalComponent

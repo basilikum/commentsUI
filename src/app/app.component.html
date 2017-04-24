@@ -1,14 +1,18 @@
 
-<div class="main-container">
-    <header>
-        <cmm-header></cmm-header>
-    </header>
-    <div style="background-color: white">
+<div class="main-container d-flex flex-column justify-content-between align-items-stretch" style="min-height:100%">
+    <div>
+        <header>
+            <cmm-header></cmm-header>
+        </header>
+    </div>
+    <div style="background-color: white; flex: 1">
         <main>
             <router-outlet></router-outlet>
         </main>
     </div>
-    <footer>
-        Footer
-    </footer>
+    <div>
+        <footer>
+            Footer
+        </footer>
+    </div>
 </div>

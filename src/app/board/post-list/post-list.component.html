@@ -15,8 +15,8 @@
                             label="Ordering">
     </cmm-select-query-param>
 </div>
+<hr>
 <div *ngFor="let post of postList?.results">
-    <hr>
     <cmm-post [post]="post"
               (remove)="postRemoved($event)">
     </cmm-post>

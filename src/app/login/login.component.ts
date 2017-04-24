@@ -29,7 +29,6 @@ export class LoginComponent implements OnInit {
                 error: (err: any) => console.log(err),
                 complete: () => {
                     this.router.navigate(['']);
-                    console.log(this.auth.getPayload());
                 }
             });
     }

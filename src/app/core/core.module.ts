@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 
 import { throwIfAlreadyLoaded } from './module-import-guard';
 
+import { AuthService } from './auth/auth.service';
 import { IsLoggedIn } from './auth/is-logged-in.guard';
 import { IsLoggedOut } from './auth/is-logged-out.guard';
 import { HasValidUrlParam } from './has_valid_url_param.guard';
@@ -23,6 +24,7 @@ import { UserService } from './user.service';
         UserLoginLinkComponent
     ],
     providers: [
+        AuthService,
         IsLoggedIn,
         IsLoggedOut,
         HasValidUrlParam,
