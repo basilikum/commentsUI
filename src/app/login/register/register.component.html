@@ -6,6 +6,7 @@
             <input class="form-control" [class.form-control-danger]="isInvalid('username')" [class.form-control-success]="isValid('username')" id="registerUsername" type="text" placeholder="Username" formControlName="username">
         </div>
         <div class="col-sm-10 offset-sm-2 form-control-feedback" *ngIf="hasError('username', ['required', 'minlength', 'maxlength'])">Please choose a username between 3 and 32 characters.</div>
+        <div class="col-sm-10 offset-sm-2 form-control-feedback" *ngIf="hasError('username', ['userUnique'])">This username is already taken.</div>
     </div>
 
 
