@@ -1,6 +1,6 @@
-<h3 class="text-center mt-3">Log in</h3>
+<h3 class="text-sm-center mt-3 mx-3">Log in</h3>
 <div class="narrow mx-auto">
-    <div class="d-flex flex-sm-row flex-column justify-content-between align-items-center">
+    <div class="d-flex flex-sm-row flex-column justify-content-between align-items-sm-center align-items-stretch">
         <div class="p-3">
             <h4 class="mb-3">with a social accout</h4>
             <button class="btn btn-google-plus w100" (click)="socialLogin('google')">Sign in with Google</button><br>
@@ -8,7 +8,7 @@
             <button class="btn btn-twitter mt-3 w100" (click)="socialLogin('twitter')">Sign in with Twitter</button>
         </div>
         <div class="align-middle">
-            OR
+            <h4 class="text-center">or</h4>
         </div>
         <div class="p-3">
             <h4 class="mb-3">with a local accout</h4>
@@ -25,6 +25,8 @@
             </form>
         </div>
     </div>
+    <hr>
+    <h3 class="text-sm-center mt-3 mx-3">Register local account</h3>
     <cmm-register></cmm-register>
 </div>
 

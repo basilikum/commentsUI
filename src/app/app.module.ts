@@ -6,7 +6,6 @@ import { environment } from '../environments/environment';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Ng2UiAuthModule, CustomConfig } from 'ng2-ui-auth';
-import { RecaptchaModule } from 'ng-recaptcha';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -41,7 +40,6 @@ export class AuthConfig extends CustomConfig {
     HttpModule,
     Ng2UiAuthModule.forRoot(AuthConfig),
     NgbModule.forRoot(),
-    RecaptchaModule.forRoot(),
     CoreModule,
     SharedModule,
     routing

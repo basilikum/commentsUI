@@ -16,10 +16,10 @@ export class AuthService {
         private http: Http
     ) { }
 
-    register(regData: { username:string, email:string, password:string }) {
+    register(regData: { username:string, email:string, password:string }) : Observable<boolean> {
         return this.http.post(this.authUrl + 'register/', regData).map((response: Response) => {
             this.auth.setToken(response.json().token);
-            return response.json().token;
+            return true;
         });
     }
 

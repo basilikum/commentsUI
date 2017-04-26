@@ -1,23 +1,26 @@
 import { NgModule } from "@angular/core";
 import { ReactiveFormsModule } from '@angular/forms';
-import { RecaptchaModule } from 'ng-recaptcha';
 
 import { LoginComponent } from './login.component';
 import { loginRouting } from "./login.routing";
 import { SharedModule } from "../shared/shared.module";
 import { RegisterComponent } from './register/register.component';
+import { RegisterSuccessModalComponent } from './register/register-success-modal/register-success-modal.component';
 
 
 @NgModule({
     declarations: [
         LoginComponent,
-        RegisterComponent
+        RegisterComponent,
+        RegisterSuccessModalComponent
     ],
     imports: [
-        RecaptchaModule,
         SharedModule,
         ReactiveFormsModule,
         loginRouting
     ],
+    entryComponents: [
+        RegisterSuccessModalComponent
+    ]
 })
 export class LoginModule {}

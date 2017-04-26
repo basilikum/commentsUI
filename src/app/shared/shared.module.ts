@@ -12,6 +12,7 @@ import { ClickIfAuthDirective } from './click-if-auth.directive';
 import { LoginRequiredModalComponent } from './login-required-modal/login-required-modal.component';
 import { SelectQueryParamComponent } from './select-query-param/select-query-param.component';
 import { AutoLinksPipe } from './auto-links.pipe';
+import { RecaptchaComponent } from './recaptcha/recaptcha.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { AutoLinksPipe } from './auto-links.pipe';
         CountdownTimerComponent,
         ClickIfAuthDirective,
         SelectQueryParamComponent,
-        AutoLinksPipe
+        AutoLinksPipe,
+        RecaptchaComponent
     ],
     declarations: [
         UserLabelComponent,
@@ -39,7 +41,8 @@ import { AutoLinksPipe } from './auto-links.pipe';
         ClickIfAuthDirective,
         LoginRequiredModalComponent,
         SelectQueryParamComponent,
-        AutoLinksPipe
+        AutoLinksPipe,
+        RecaptchaComponent
     ],
     entryComponents: [
         LoginRequiredModalComponent

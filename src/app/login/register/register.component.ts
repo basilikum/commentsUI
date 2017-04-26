@@ -4,8 +4,11 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/toPromise';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { AuthService } from '../../core/auth/auth.service';
+
+import { RegisterSuccessModalComponent } from './register-success-modal/register-success-modal.component';
 
 @Component({
     selector: 'cmm-register',
@@ -21,6 +24,7 @@ export class RegisterComponent implements OnInit {
     constructor(
         private auth: AuthService,
         private formBuilder: FormBuilder,
+        private modalService: NgbModal,
         private router: Router
     ) { }
 
@@ -29,8 +33,12 @@ export class RegisterComponent implements OnInit {
     }
 
     onSubmit() {
-        this.auth.register(this.registerForm.value).subscribe((result) => {
-            console.log(result);
+        this.auth.register(this.registerForm.value).subscribe((success) => {
+            this.modalService.open(RegisterSuccessModalComponent).result.then(() => {
+                this.router.navigate(['']);
+            }, () => {
+                this.router.navigate(['']);
+            });
         });
     }
 
@@ -47,6 +55,10 @@ export class RegisterComponent implements OnInit {
     hasError(field: string, errorCodes: string[]) {
         const control = this.registerForm.controls[field];
         return control.touched && errorCodes.some(errorCode => control.hasError(errorCode));
+    }
+
+    recaptchaVerify(response) {
+        this.registerForm.controls['g-recaptcha-response'].setValue(response);
     }
 
     private isUsernameUnique(control: FormControl) {
@@ -71,7 +83,8 @@ export class RegisterComponent implements OnInit {
         this.registerForm = this.formBuilder.group({
             username: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(32)], this.isUsernameUnique.bind(this)],
             email: ['', [Validators.required, Validators.email]],
-            password: ['', [Validators.required, Validators.minLength(8)]]
+            password: ['', [Validators.required, Validators.minLength(8)]],
+            'g-recaptcha-response': ['', Validators.required]
         });
     }
 }
