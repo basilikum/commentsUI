@@ -2,9 +2,14 @@
     <a class="btn btn-link" *ngSwitchCase="false" [routerLink]="['/login']">
         Login
     </a>
-    <span *ngSwitchCase="true">
-        <a class="btn btn-link" [routerLink]="['/user']"><i class="material-icons">person</i> {{ getUser().name }}</a>
-        <button class="btn btn-link" (click)="logout()">Logout</button>
-    </span>
+    <div *ngSwitchCase="true" ngbDropdown class="d-inline-block">
+        <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Account&nbsp;</button>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownBasic1">
+            <h6 class="dropdown-header">{{ getUser().name }}</h6>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" [routerLink]="['/user']">Details</a>
+            <button class="dropdown-item" (click)="logout()">Logout</button>
+        </div>
+    </div>
 </ng-container>
 

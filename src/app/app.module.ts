@@ -18,6 +18,7 @@ import { CoreModule }    from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { routing } from "./app.routing";
 import { HeaderComponent } from './header/header.component';
+import { HeaderLightComponent } from './header-light/header-light.component';
 
 export class AuthConfig extends CustomConfig {
     defaultHeaders = {'Content-Type': 'application/json'};
@@ -32,7 +33,8 @@ export class AuthConfig extends CustomConfig {
   declarations: [
     AppComponent,
     HomeComponent,
-    HeaderComponent
+    HeaderComponent,
+    HeaderLightComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,7 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { throwIfAlreadyLoaded } from './module-import-guard';
 
@@ -14,6 +15,7 @@ import { UserService } from './user.service';
 
 @NgModule({
     imports: [
+        NgbModule,
         CommonModule,
         RouterModule
     ],

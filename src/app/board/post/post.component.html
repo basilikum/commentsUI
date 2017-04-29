@@ -1,41 +1,43 @@
 <article class="post my-3">
-    <div class="d-flex flex-row pb-2 post-main">
-        <div class="post-sidebar">
-            <cmm-user-label [user]="post.creator"
-                            [date]="post.created">
-            </cmm-user-label>
-        </div>
-        <div class="d-flex flex-column justify-content-between w-100">
-            <h4 *ngIf="title" class="px-3 mb-2 mt-2">{{ title }}</h4>
-            <div class="post-content px-3 py-2" [innerHtml]="post.text | autoLinks"></div>
-            <div class="post-controls px-3 py-1 d-flex flex-row">
-                <div class="align-self-start" *ngIf="post.numberOfChildren > 0 && !externalChildHandling">
-                    <button class="btn btn-outline-primary icon-button no-border-button toggle-button" [class.open]="childrenVisible" (click)="toggleChildren()">
-                        <i class="material-icons">expand_more</i>
-                        <span>{{ post.numberOfChildren }} Replies</span>
-                    </button>
-                </div>
-                <div class="ml-auto">
-                    <cmm-post-controls [post]="post"
-                                       (openCreateForm)="showCreateForm()"
-                                       (openEditForm)="showEditForm()"
-                                       (remove)="deletePost()">
-                    </cmm-post-controls>
+    <div class="post-main">
+        <div class="d-flex flex-row pb-2">
+            <div class="post-sidebar">
+                <cmm-user-label [user]="post.creator"
+                                [date]="post.created">
+                </cmm-user-label>
+            </div>
+            <div class="d-flex flex-column justify-content-between w-100">
+                <h4 *ngIf="title" class="px-3 mb-2 mt-2">{{ title }}</h4>
+                <div class="post-content px-3 py-2" [innerHtml]="post.text | autoLinks"></div>
+                <div class="post-controls px-3 py-1 d-flex flex-row">
+                    <div class="align-self-start" *ngIf="post.numberOfChildren > 0 && !externalChildHandling">
+                        <button class="btn btn-outline-primary icon-button-left no-border-button toggle-button" [class.open]="childrenVisible" (click)="toggleChildren()">
+                            <i class="material-icons">expand_more</i>
+                            <span>{{ post.numberOfChildren }} Replies</span>
+                        </button>
+                    </div>
+                    <div class="ml-auto">
+                        <cmm-post-controls [post]="post"
+                                        (openCreateForm)="showCreateForm()"
+                                        (openEditForm)="showEditForm()"
+                                        (remove)="deletePost()">
+                        </cmm-post-controls>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="p-3" *ngIf="createFormVisible">
-        <cmm-post-create [origin]="post"
-                         (create)="postCreated($event)"
-                         (close)="postCreateClosed($event)">
-        </cmm-post-create>
-    </div>
-    <div class="p-3" *ngIf="editFormVisible">
-        <cmm-post-edit [post]="post"
-                       (edit)="postEdited($event)"
-                       (close)="postEditClosed($event)">
-        </cmm-post-edit>
+        <div class="py-4" *ngIf="createFormVisible">
+            <cmm-post-create [origin]="post"
+                            (create)="postCreated($event)"
+                            (close)="postCreateClosed($event)">
+            </cmm-post-create>
+        </div>
+        <div class="py-4" *ngIf="editFormVisible">
+            <cmm-post-edit [post]="post"
+                        (edit)="postEdited($event)"
+                        (close)="postEditClosed($event)">
+            </cmm-post-edit>
+        </div>
     </div>
     <div class="post-children pl-5 ml-5" *ngIf="childrenVisible && post.numberOfChildren > 0 && !externalChildHandling">
         <cmm-post

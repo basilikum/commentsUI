@@ -1,8 +1,8 @@
-<a class="btn btn-outline-secondary no-border-button text-muted" [routerLink]="['/board']" queryParamsHandling="preserve">
-  <b>{{ board?.site.netloc }}</b>
-  <small class="text-muted">{{ board?.path }}</small>
+<a class="btn btn-link btn-xlg no-border-button mr-3" [routerLink]="['/board']" queryParamsHandling="preserve">
+  {{ board?.site.netloc }}
+  <span class="text-muted">{{ board?.path }}</span>
 </a>
-<a class="btn btn-outline-primary no-border-button icon-button" [attr.href]="board.url" target="_blank">
+<a class="btn btn-outline-primary icon-button-right" [attr.href]="board.url" target="_blank">
     <span>Open</span>
     <i class="material-icons">chevron_right</i>
 </a>

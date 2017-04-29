@@ -1,9 +1,11 @@
-
+<div class="my-5 py-5 text-center">
+    <img src="assets/logo_big.png">
+</div>
 <form id="url-search-form" (ngSubmit)="onSubmit()" [formGroup]="goToBoardForm">
     <div class="form-group w-100">
-        <label for="urlInput">Discuss Website</label>
-        <input id="urlInput" class="form-control" type="text" placeholder="http:// ..." formControlName="url">
+        <label class="sr-only" for="urlInput">Website URL</label>
+        <input id="urlInput" class="form-control form-control-lg" type="text" placeholder="http:// ..." formControlName="url" cmmAutofocus>
     </div>
-    <button class="btn btn-primary" type="submit" [disabled]="!goToBoardForm.valid">Go!</button>
+    <button class="btn btn-primary btn-lg" type="submit" [disabled]="!goToBoardForm.valid">Go!</button>
 </form>
 

@@ -22,7 +22,7 @@ html, body {
     cursor: pointer;
 }
 
-.icon-button {
+.icon-button-left {
     padding-left: 2.5rem;
     position: relative;
     .material-icons {
@@ -32,6 +32,18 @@ html, body {
         margin-top: -0.75rem;
     }
 }
+
+.icon-button-right {
+    padding-right: 2rem;
+    position: relative;
+    .material-icons {
+        position: absolute;
+        right: 0.5rem;
+        top: 50%;
+        margin-top: -0.8rem;
+    }
+}
+
 
 
 .toggle-button {
@@ -67,6 +79,24 @@ html, body {
 .btn-link {
     cursor: pointer;
     padding: 0;
+    outline: none;
+    &:focus {
+        box-shadow: none;
+    }
+    &:focus, &:hover {
+        span {
+            text-decoration: none;
+        }
+    }
+}
+
+.btn-xlg {
+    padding: 1.5rem 2rem;
+    font-size: 2rem;
+    border-radius: .5rem;
+    &.btn-link {
+        padding: 1rem 0;
+    }
 }
 
 

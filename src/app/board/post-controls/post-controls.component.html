@@ -4,16 +4,16 @@
                           (stop)="secondsUntilFrozen = 0"
                           class="mr-2">
     </cmm-countdown-timer>
-    <button class="btn btn-outline-secondary text-muted icon-button no-border-button" (click)="showEditForm()">
+    <button class="btn btn-outline-secondary text-muted icon-button-left no-border-button" (click)="showEditForm()">
         <i class="material-icons">edit</i>
         <span>Edit</span>
     </button>
-    <button class="btn btn-outline-secondary text-muted icon-button no-border-button" (click)="deletePost()">
+    <button class="btn btn-outline-secondary text-muted icon-button-left no-border-button" (click)="deletePost()">
         <i class="material-icons">delete</i>
         <span>Delete</span>
     </button>
 </span>
-<button class="btn btn-outline-secondary text-muted icon-button no-border-button" (cmmClickIfAuth)="showCreateForm()">
+<button class="btn btn-outline-secondary text-muted icon-button-left no-border-button" (cmmClickIfAuth)="showCreateForm()">
     <i class="material-icons">reply</i>
     <span>Reply</span>
 </button>

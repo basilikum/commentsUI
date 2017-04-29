@@ -13,6 +13,7 @@ import { LoginRequiredModalComponent } from './login-required-modal/login-requir
 import { SelectQueryParamComponent } from './select-query-param/select-query-param.component';
 import { AutoLinksPipe } from './auto-links.pipe';
 import { RecaptchaComponent } from './recaptcha/recaptcha.component';
+import { AutofocusDirective } from './autofocus.directive';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { RecaptchaComponent } from './recaptcha/recaptcha.component';
         ClickIfAuthDirective,
         SelectQueryParamComponent,
         AutoLinksPipe,
-        RecaptchaComponent
+        RecaptchaComponent,
+        AutofocusDirective
     ],
     declarations: [
         UserLabelComponent,
@@ -42,7 +44,8 @@ import { RecaptchaComponent } from './recaptcha/recaptcha.component';
         LoginRequiredModalComponent,
         SelectQueryParamComponent,
         AutoLinksPipe,
-        RecaptchaComponent
+        RecaptchaComponent,
+        AutofocusDirective
     ],
     entryComponents: [
         LoginRequiredModalComponent
