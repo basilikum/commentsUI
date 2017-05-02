@@ -19,6 +19,7 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "cmm",
       "styles": [
+        "assets/bootstrap.min.css",
         "styles.less"
       ],
       "scripts": [

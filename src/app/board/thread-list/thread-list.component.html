@@ -1,6 +1,9 @@
 <div *ngIf="threadList?.count > 0">
     <div class="d-flex flex-row align-items-center">
-        <a class="btn btn-success" cmmClickIfAuth [routerLink]="['/board', 'new']" queryParamsHandling="preserve">New Thread</a>
+        <a class="btn btn-outline-success no-border-button icon-button-left" cmmClickIfAuth [routerLink]="['/board', 'new']" queryParamsHandling="preserve">
+            <i class="material-icons">add</i>
+            <span>New Thread</span>
+        </a>
         <cmm-select-query-param class="ml-auto"
                                 [selected]="ordering"
                                 [options]="orderOptions"
@@ -27,6 +30,7 @@
                 <td class="align-middle">
                     <a [routerLink]="['/board', thread.id]" [queryParams]="{ url: board.url }">{{ thread.title }}</a><br>
                     <a [routerLink]="['/user']"><small>{{ thread.creator.name }}</small></a>
+                    <span>-</span>
                     <small>{{ thread.created | date: 'short' }}</small>
                 </td>
                 <td class="align-middle text-center stats">
@@ -34,8 +38,8 @@
                     <small>Replies</small>
                 </td>
                 <td class="align-middle text-center stats">
-                    {{ thread.numberOfDescendants }}<br>
-                    <small>Posts</small>
+                    {{ thread.numberOfDescendants + thread.numberOfChildren }}<br>
+                    <small>Total Posts</small>
                 </td>
             </tr>
         </tbody>
