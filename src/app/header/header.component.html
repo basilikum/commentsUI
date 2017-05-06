@@ -1,6 +1,6 @@
 <nav class="p-3 width-limit d-flex flex-row justify-content-between align-items-center">
     <a class="mr-3" [routerLink]="['']"><img src="assets/logo.svg" height="50px"></a>
-    <form class="form-inline mx-auto w-75 mr-3" (ngSubmit)="onSubmit()" [formGroup]="goToBoardForm">
+    <form class="form-inline mx-auto w-75" (ngSubmit)="onSubmit()" [formGroup]="goToBoardForm">
         <div class="input-group input-group-lg w-100">
             <input class="form-control" id="header_url_input" type="text" placeholder="http:// ..." formControlName="url">
             <span class="input-group-btn">
@@ -8,5 +8,5 @@
             </span>
         </div>
     </form>
-    <cmm-user-login-link></cmm-user-login-link>
+    <cmm-user-login-link class="ml-3"></cmm-user-login-link>
 </nav>

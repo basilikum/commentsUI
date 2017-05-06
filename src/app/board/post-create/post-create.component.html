@@ -3,6 +3,8 @@
         <label class="sr-only" for="postCreateInput{{ origin.id }}">Reply</label>
         <textarea class="form-control" id="postCreateInput{{ origin.id }}" rows="15" formControlName="message" placeholder="Your reply here..." cmmAutofocus></textarea>
     </div>
-    <button class="btn btn-primary" type="submit" [disabled]="!postCreateForm.valid">Send Reply</button>
-    <button class="btn btn-secondary" type="button" (click)="cancel()">Cancel</button>
+    <div class="form-group text-right">
+        <button class="btn btn-primary" type="submit" [disabled]="!postCreateForm.valid">Send Reply</button>
+        <button class="btn btn-secondary" type="button" (click)="cancel()">Cancel</button>
+    </div>
 </form>

@@ -1,9 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body {
-    background-color: #f7f7f7;
     height: 100%;
     font-size: 12px;
+    font-family: 'Roboto', sans-serif;
+}
+
+hr {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.light-weight {
+    font-weight: 300;
 }
 
 .w100 {
@@ -14,6 +23,9 @@ html, body {
     font-size: 1.5rem;
     &.small {
         font-size: 1rem;
+    }
+    &.tiny {
+        font-size: 0.6rem;
     }
 }
 
@@ -80,6 +92,8 @@ html, body {
     cursor: pointer;
     padding: 0;
     outline: none;
+    text-align: left;
+    white-space: normal;
     &:focus {
         box-shadow: none;
     }
@@ -107,9 +121,13 @@ html, body {
 
 
 .text-light {
-    color: #ccc;
+    color: #ddd;
 }
 
 .narrow {
     max-width: 500px;
+}
+
+.break-all {
+    word-break: break-all;
 }

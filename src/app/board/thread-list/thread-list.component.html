@@ -1,6 +1,6 @@
 <div *ngIf="threadList?.count > 0">
     <div class="d-flex flex-row align-items-center">
-        <a class="btn btn-outline-success no-border-button icon-button-left" cmmClickIfAuth [routerLink]="['/board', 'new']" queryParamsHandling="preserve">
+        <a class="btn btn-outline-secondary text-muted no-border-button icon-button-left" cmmClickIfAuth [routerLink]="['/board', 'new']" queryParamsHandling="preserve">
             <i class="material-icons">add</i>
             <span>New Thread</span>
         </a>
@@ -12,7 +12,7 @@
                                 label="Ordering">
         </cmm-select-query-param>
     </div>
-    <table class="table thread-list mt-3">
+    <table class="table thread-list mt-2">
         <tbody>
             <tr *ngFor="let thread of threadList?.results">
                 <td class="align-middle text-center text-muted votes pr-0">
@@ -29,9 +29,7 @@
                 </td>
                 <td class="align-middle">
                     <a [routerLink]="['/board', thread.id]" [queryParams]="{ url: board.url }">{{ thread.title }}</a><br>
-                    <a [routerLink]="['/user']"><small>{{ thread.creator.name }}</small></a>
-                    <span>-</span>
-                    <small>{{ thread.created | date: 'short' }}</small>
+                    <cmm-who-and-when [user]="thread.creator" [date]="thread.created"></cmm-who-and-when>
                 </td>
                 <td class="align-middle text-center stats">
                     {{ thread.numberOfChildren }}<br>
@@ -49,9 +47,9 @@
     </cmm-pagination>
 </div>
 <div class="p-5 text-center" *ngIf="threadList?.count === 0">
-    <h4 class="card-title">Be the first one to post something here!</h4>
+    <h4 class="card-title light-weight">Be the first one to post something here!</h4>
     <a [routerLink]="['/board', 'new']"
        queryParamsHandling="preserve"
        cmmClickIfAuth
-       class="btn btn-success">Create Thread</a>
+       class="btn btn-success btn-lg">Create Thread</a>
 </div>

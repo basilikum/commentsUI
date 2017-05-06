@@ -9,7 +9,9 @@
         <label class="sr-only" for="postEditInput{{ post.id }}">Edit Post</label>
         <textarea class="form-control" id="postEditInput{{ post.id }}" rows="15" formControlName="message" cmmAutofocus></textarea>
     </div>
-    <button class="btn btn-primary" type="submit" [disabled]="!postEditForm.valid">Submit Edit</button>
-    <button class="btn btn-secondary" type="button" [disabled]="postEditForm.pristine" (click)="reset()">Reset</button>
-    <button class="btn btn-secondary" type="button" (click)="cancel()">Cancel</button>
+    <div class="form-group text-right">
+        <button class="btn btn-primary" type="submit" [disabled]="!postEditForm.valid">Submit Edit</button>
+        <button class="btn btn-secondary" type="button" [disabled]="postEditForm.pristine" (click)="reset()">Reset</button>
+        <button class="btn btn-secondary" type="button" (click)="cancel()">Cancel</button>
+    </div>
 </form>

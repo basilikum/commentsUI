@@ -14,6 +14,8 @@ import { SelectQueryParamComponent } from './select-query-param/select-query-par
 import { AutoLinksPipe } from './auto-links.pipe';
 import { RecaptchaComponent } from './recaptcha/recaptcha.component';
 import { AutofocusDirective } from './autofocus.directive';
+import { ElapsedPipe } from './elapsed.pipe';
+import { WhoAndWhenComponent } from './who-and-when/who-and-when.component';
 
 
 @NgModule({
@@ -34,7 +36,9 @@ import { AutofocusDirective } from './autofocus.directive';
         SelectQueryParamComponent,
         AutoLinksPipe,
         RecaptchaComponent,
-        AutofocusDirective
+        AutofocusDirective,
+        ElapsedPipe,
+        WhoAndWhenComponent
     ],
     declarations: [
         UserLabelComponent,
@@ -45,7 +49,9 @@ import { AutofocusDirective } from './autofocus.directive';
         SelectQueryParamComponent,
         AutoLinksPipe,
         RecaptchaComponent,
-        AutofocusDirective
+        AutofocusDirective,
+        ElapsedPipe,
+        WhoAndWhenComponent
     ],
     entryComponents: [
         LoginRequiredModalComponent

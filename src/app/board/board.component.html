@@ -1,6 +1,6 @@
-<a class="btn btn-link btn-xlg no-border-button icon-button-left mr-3" [routerLink]="['/board']" queryParamsHandling="preserve">
-    <i class="material-icons">bookmark</i>
-    <span>{{ board?.site.netloc }}{{ board?.path }}</span>
+<a class="btn btn-link btn-xlg no-border-button text-muted light-weight icon-button-left mr-3" [routerLink]="['/board']" queryParamsHandling="preserve">
+    <i class="material-icons text-light">bookmark</i>
+    <span class="break-all">{{ board?.site.netloc }}{{ board?.path }}</span>
 </a>
 <a class="btn btn-outline-primary icon-button-right no-border-button mt-1" [attr.href]="board.url" target="_blank">
     <span>Open</span>

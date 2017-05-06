@@ -1,4 +1,4 @@
-<article class="post my-3">
+<article class="post my-2">
     <div class="post-main">
         <div class="d-flex flex-row pb-2">
             <div class="post-sidebar">
@@ -7,7 +7,8 @@
                 </cmm-user-label>
             </div>
             <div class="d-flex flex-column justify-content-between w-100">
-                <h4 *ngIf="title" class="px-3 mb-2 mt-2">{{ title }}</h4>
+                <cmm-who-and-when class="px-3" [user]="post.creator" [date]="post.created"></cmm-who-and-when>
+                <h4 *ngIf="title" class="px-3 mb-2 mt-3 light-weight">{{ title }}</h4>
                 <div class="post-content px-3 py-2" [innerHtml]="post.text | autoLinks"></div>
                 <div class="post-controls px-3 py-1 d-flex flex-row">
                     <div class="align-self-start" *ngIf="post.numberOfChildren > 0 && !externalChildHandling">
