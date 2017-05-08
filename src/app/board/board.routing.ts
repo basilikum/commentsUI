@@ -1,7 +1,7 @@
 import { Routes, RouterModule } from '@angular/router';
 
 import { HasValidUrlParam } from '../core/has_valid_url_param.guard';
-import { IsLoggedIn } from '../core/auth/is-logged-in.guard';
+import { IsActive } from '../core/auth/is-active.guard';
 
 import { BoardComponent } from './board.component';
 import { BoardResolver } from './board.resolver';
@@ -15,7 +15,7 @@ import { ThreadDetailComponent } from './thread-detail/thread-detail.component';
 const BOARD_ROUTES: Routes = [
     { path: "", component: BoardComponent, canActivate: [HasValidUrlParam], resolve: { board: BoardResolver }, runGuardsAndResolvers: 'paramsOrQueryParamsChange', children: [
         { path: "", component: ThreadListComponent },
-        { path: "new", component: ThreadNewComponent, canActivate: [IsLoggedIn] },
+        { path: "new", component: ThreadNewComponent, canActivate: [IsActive] },
         { path: ":id", component: ThreadDetailComponent, resolve: { thread: ThreadResolver, post: OPResolver } }
     ]},
 

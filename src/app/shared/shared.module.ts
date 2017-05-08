@@ -16,6 +16,7 @@ import { RecaptchaComponent } from './recaptcha/recaptcha.component';
 import { AutofocusDirective } from './autofocus.directive';
 import { ElapsedPipe } from './elapsed.pipe';
 import { WhoAndWhenComponent } from './who-and-when/who-and-when.component';
+import { ActivationRequiredModalComponent } from './activation-required-modal/activation-required-modal.component';
 
 
 @NgModule({
@@ -29,31 +30,38 @@ import { WhoAndWhenComponent } from './who-and-when/who-and-when.component';
     ],
     exports: [
         CommonModule,
-        UserLabelComponent,
-        PaginationComponent,
+
         CountdownTimerComponent,
-        ClickIfAuthDirective,
-        SelectQueryParamComponent,
-        AutoLinksPipe,
+        PaginationComponent,
         RecaptchaComponent,
+        SelectQueryParamComponent,
+        UserLabelComponent,
+        WhoAndWhenComponent,
+
         AutofocusDirective,
-        ElapsedPipe,
-        WhoAndWhenComponent
+        ClickIfAuthDirective,
+
+        AutoLinksPipe,
+        ElapsedPipe
     ],
     declarations: [
-        UserLabelComponent,
-        PaginationComponent,
+        ActivationRequiredModalComponent,
         CountdownTimerComponent,
-        ClickIfAuthDirective,
         LoginRequiredModalComponent,
-        SelectQueryParamComponent,
-        AutoLinksPipe,
+        PaginationComponent,
         RecaptchaComponent,
+        SelectQueryParamComponent,
+        UserLabelComponent,
+        WhoAndWhenComponent,
+
         AutofocusDirective,
-        ElapsedPipe,
-        WhoAndWhenComponent
+        ClickIfAuthDirective,
+
+        AutoLinksPipe,
+        ElapsedPipe
     ],
     entryComponents: [
+        ActivationRequiredModalComponent,
         LoginRequiredModalComponent
     ]
 })

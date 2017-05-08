@@ -2,11 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/toPromise';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { AuthService } from '../../core/auth/auth.service';
+import { FormsService } from '../../core/forms.service';
 
 import { RegisterSuccessModalComponent } from './register-success-modal/register-success-modal.component';
 
@@ -22,6 +21,7 @@ export class RegisterComponent implements OnInit {
     private timer: any;
 
     constructor(
+        public forms: FormsService,
         private auth: AuthService,
         private formBuilder: FormBuilder,
         private modalService: NgbModal,
@@ -40,21 +40,6 @@ export class RegisterComponent implements OnInit {
                 this.router.navigate(['']);
             });
         });
-    }
-
-    isValid(field) {
-        const control = this.registerForm.controls[field];
-        return control.touched && control.valid;
-    }
-
-    isInvalid(field) {
-        const control = this.registerForm.controls[field];
-        return control.touched && control.invalid;
-    }
-
-    hasError(field: string, errorCodes: string[]) {
-        const control = this.registerForm.controls[field];
-        return control.touched && errorCodes.some(errorCode => control.hasError(errorCode));
     }
 
     recaptchaVerify(response) {

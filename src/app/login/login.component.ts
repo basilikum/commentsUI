@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 
 import {AuthService} from 'ng2-ui-auth';
 
+import { UserService } from '../core/user.service';
+
 @Component({
     selector: 'cmm-login',
     templateUrl: './login.component.html',
@@ -16,7 +18,8 @@ export class LoginComponent implements OnInit {
     constructor(
         private auth: AuthService,
         private formBuilder: FormBuilder,
-        private router: Router
+        private router: Router,
+        private userService: UserService
     ) { }
 
     ngOnInit() {
@@ -28,7 +31,11 @@ export class LoginComponent implements OnInit {
             .subscribe({
                 error: (err: any) => console.log(err),
                 complete: () => {
-                    this.router.navigate(['']);
+                    if (this.userService.isActive()) {
+                        this.router.navigate(['']);
+                    } else {
+                        this.router.navigate(['login', 'finalize']);
+                    }
                 }
             });
     }

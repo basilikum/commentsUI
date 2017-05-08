@@ -1,0 +1,9 @@
+<div class="modal-header">
+    <h4 class="modal-title">Registration Incomplete</h4>
+</div>
+<div class="modal-body">
+    <p>Your registration is not yet complete. Please complete it <a (click)="activeModal.close()" [routerLink]="['/login/finalize']">here</a>.</p>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="activeModal.close()">Close</button>
+</div>

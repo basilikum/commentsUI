@@ -7,7 +7,7 @@
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownBasic1">
             <h6 class="dropdown-header">{{ getUser().name }}</h6>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" [routerLink]="['/user']">Details</a>
+            <a class="dropdown-item" [routerLink]="['/user', getUser().id]">Details</a>
             <button class="dropdown-item" (click)="logout()">Logout</button>
         </div>
     </div>

@@ -6,13 +6,15 @@ import { loginRouting } from "./login.routing";
 import { SharedModule } from "../shared/shared.module";
 import { RegisterComponent } from './register/register.component';
 import { RegisterSuccessModalComponent } from './register/register-success-modal/register-success-modal.component';
+import { FinalizeSocialComponent } from './finalize-social/finalize-social.component';
 
 
 @NgModule({
     declarations: [
         LoginComponent,
         RegisterComponent,
-        RegisterSuccessModalComponent
+        RegisterSuccessModalComponent,
+        FinalizeSocialComponent
     ],
     imports: [
         SharedModule,

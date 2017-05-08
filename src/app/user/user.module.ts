@@ -1,10 +1,12 @@
-import { NgModule } from "@angular/core";
+import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { UserComponent } from './user.component';
-import { userRouting } from "./user.routing";
-import { SharedModule } from "../shared/shared.module";
+import { SharedModule } from '../shared/shared.module';
 
+
+import { UserComponent } from './user.component';
+import { userRouting } from './user.routing';
+import { UserResolver } from './user.resolver';
 
 @NgModule({
     declarations: [
@@ -15,5 +17,8 @@ import { SharedModule } from "../shared/shared.module";
         ReactiveFormsModule,
         userRouting
     ],
+    providers: [
+        UserResolver
+    ]
 })
 export class UserModule {}
