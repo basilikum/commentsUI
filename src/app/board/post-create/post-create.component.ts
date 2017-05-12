@@ -3,7 +3,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 import { Post } from '../../shared/models/post.model';
 
-import { PostService } from '../post.service';
+import { PostService } from '../../core/post.service';
 
 @Component({
     selector: 'cmm-post-create',

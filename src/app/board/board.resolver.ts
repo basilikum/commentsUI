@@ -13,7 +13,6 @@ export class BoardResolver implements Resolve<Board> {
     constructor(private boardService: BoardService) {}
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Board> {
-        console.log('resolve', route.queryParams['url']);
         return this.boardService.getBoardByUrl(route.queryParams['url']);
     }
 }

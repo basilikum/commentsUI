@@ -15,21 +15,16 @@
     <table class="table thread-list mt-2">
         <tbody>
             <tr *ngFor="let thread of threadList?.results">
-                <td class="align-middle text-center text-muted votes pr-0">
-                    <div class="pr-1">
-                        <span>{{ thread.originalPost.voteData.plus }}</span><br>
-                        <i class="material-icons text-success">arrow_drop_up</i>
-                    </div>
-                </td>
-                <td class="align-middle text-center text-muted votes pl-0">
-                    <div class="pl-1">
-                        <span>{{ thread.originalPost.voteData.minus }}</span><br>
-                        <i class="material-icons text-danger">arrow_drop_down</i>
-                    </div>
+                <td class="align-bottom text-center text-muted votes pr-0">
+                    <cmm-vote-handle class="mt-2"
+                                    [voteData]="thread.originalPost.voteData"
+                                    [readOnly]="true">
+                    </cmm-vote-handle>
                 </td>
                 <td class="align-middle">
                     <a [routerLink]="['/board', thread.id]" [queryParams]="{ url: board.url }">{{ thread.title }}</a><br>
-                    <cmm-who-and-when [user]="thread.creator" [date]="thread.created"></cmm-who-and-when>
+                    <cmm-who [user]="thread.creator"></cmm-who>
+                    <cmm-when [date]="thread.created"></cmm-when>
                 </td>
                 <td class="align-middle text-center stats">
                     {{ thread.numberOfChildren }}<br>

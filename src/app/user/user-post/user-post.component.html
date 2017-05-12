@@ -1,0 +1,8 @@
+<tr>
+    <td>
+        <a [routerLink]="['/board']" [queryParams]="{ url: post.thread.rawPath }">{{ post.text }}</a><br>
+        <cmm-when [date]="post.created"></cmm-when>
+        <span>-</span>
+        <cmm-where [board]="post.thread.board" [url]="post.thread.rawPath"></cmm-where>
+    </td>
+</tr>

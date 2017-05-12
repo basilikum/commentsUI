@@ -1,5 +1,6 @@
 import { User } from './user.model';
 import { Site } from './site.model';
+import { Thread } from './thread.model';
 import { VoteData } from './vote-data.model';
 
 export class Post {
@@ -7,6 +8,7 @@ export class Post {
     public origin: string;
     public parent: string;
     public site: Site;
+    public thread: string | Thread;
     public text: string;
     public creator: User;
     public created: Date;
@@ -22,6 +24,7 @@ export class Post {
         this.origin = data.origin;
         this.parent = data.parent;
         this.site = data.site ? new Site(data.site) : null;
+        this.thread = typeof data.thread === 'string' ? data.thread : data.thread ? new Thread(data.thread) : null;
         this.creator = new User(data.creator);
         this.created = new Date(data.created);
         this.modified = new Date(data.modified);

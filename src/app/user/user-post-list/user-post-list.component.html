@@ -1,0 +1,54 @@
+<div class="d-flex flex-row align-items-center">
+    <cmm-select-query-param *ngIf="postList?.count > 0"
+                            class="ml-auto"
+                            [selected]="ordering"
+                            [options]="orderOptions"
+                            [extras]="{ page: 1 }"
+                            paramName="ordering"
+                            label="Ordering">
+    </cmm-select-query-param>
+</div>
+<div *ngIf="postList?.numberOfPages > 1">
+    <hr>
+    <cmm-pagination [partialList]="postList"
+                    pageQueryParamName="page">
+    </cmm-pagination>
+</div>
+<table class="table mt-2 user-post-table">
+    <tbody>
+        <tr *ngFor="let post of postList?.results">
+            <td class="align-middle text-center votes pr-0">
+                <cmm-vote-handle class="mt-2"
+                                 [voteData]="post.voteData"
+                                 [readOnly]="true">
+                </cmm-vote-handle>
+            </td>
+            <td class="main">
+                <a class="no-wrap"
+                   [routerLink]="['/board']"
+                   [queryParams]="{ url: post.thread.rawPath }">
+                    <span *ngIf="!post.parent"><i class="material-icons tiny text-success mr-1">fiber_manual_record</i>{{ post.thread.title }}</span>
+                    <span *ngIf="post.parent">{{ post.text }}</span>
+                </a>
+                <div *ngIf="post.parent">
+                    <i class="material-icons tiny text-light">fiber_manual_record</i>
+                    <a class="no-wrap"
+                       [routerLink]="['/board', post.thread.id]"
+                       [queryParams]="{ url: post.thread.rawPath }">
+                        <small>{{ post.thread.title }}</small>
+                    </a>
+                </div>
+                <cmm-when [date]="post.created"></cmm-when>
+                <span>-</span>
+                <cmm-where [board]="post.thread.board" [url]="post.thread.rawPath"></cmm-where>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div *ngIf="postList?.numberOfPages > 1">
+    <hr>
+    <cmm-pagination [partialList]="postList"
+                    pageQueryParamName="page">
+    </cmm-pagination>
+</div>

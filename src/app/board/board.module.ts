@@ -16,14 +16,11 @@ import { ThreadResolver } from './thread.resolver';
 import { OPResolver } from './op.resolver';
 import { ThreadNewComponent } from './thread-new/thread-new.component';
 import { PostComponent } from './post/post.component';
-import { VoteHandleComponent } from './vote-handle/vote-handle.component';
 import { PostListComponent } from './post-list/post-list.component';
 import { PostCreateComponent } from './post-create/post-create.component';
 import { PostEditComponent } from './post-edit/post-edit.component';
 import { PostControlsComponent } from './post-controls/post-controls.component';
-import { PostDeleteConfirmModalComponent } from './post-delete-confirm-modal/post-delete-confirm-modal.component';
 
-import { PostService } from './post.service';
 import { VoteResultsComponent } from './vote-results/vote-results.component';
 
 
@@ -34,12 +31,10 @@ import { VoteResultsComponent } from './vote-results/vote-results.component';
         ThreadListComponent,
         ThreadNewComponent,
         PostComponent,
-        VoteHandleComponent,
         PostListComponent,
         PostCreateComponent,
         PostEditComponent,
         PostControlsComponent,
-        PostDeleteConfirmModalComponent,
         VoteResultsComponent
     ],
     imports: [
@@ -52,11 +47,7 @@ import { VoteResultsComponent } from './vote-results/vote-results.component';
     providers: [
         BoardResolver,
         ThreadResolver,
-        OPResolver,
-        PostService
-    ],
-    entryComponents: [
-        PostDeleteConfirmModalComponent
+        OPResolver
     ]
 })
 export class BoardModule {}

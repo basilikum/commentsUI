@@ -1,45 +1,38 @@
 import { Component, OnInit, OnChanges, Input, SimpleChanges } from '@angular/core';
 
 import { Post } from '../../shared/models/post.model';
+import { User } from '../../shared/models/user.model';
 import { PartialList } from '../../shared/partial-list';
 
 import { PostService } from '../../core/post.service';
 
-@Component({
-    selector: 'cmm-post-list',
-    templateUrl: './post-list.component.html',
-    styleUrls: ['./post-list.component.less']
-})
-export class PostListComponent implements OnInit, OnChanges {
 
+@Component({
+    selector: 'cmm-user-post-list',
+    templateUrl: './user-post-list.component.html',
+    styleUrls: ['./user-post-list.component.less']
+})
+export class UserPostListComponent implements OnInit {
     @Input() page: number;
     @Input() ordering: string;
-    @Input() parent: Post;
+    @Input() user: User;
 
     orderOptions = [
         {
-            param: '-modified',
+            param: '-created',
             label: 'most recent'
         },
         {
-            param: 'modified',
+            param: 'created',
             label: 'least recent'
         },
         {
-            param: '-vote_entity__total',
+            param: '-vote_entity__total,-vote_entity__plus',
             label: 'highest rating'
         },
         {
-            param: 'vote_entity__total',
+            param: 'vote_entity__total,vote_entity__plus',
             label: 'lowest rating'
-        },
-        {
-            param: '-number_of_children',
-            label: 'longest conversation'
-        },
-        {
-            param: 'number_of_children',
-            label: 'shortest conversation'
         }
     ];
 
@@ -57,13 +50,10 @@ export class PostListComponent implements OnInit, OnChanges {
         this.update();
     }
 
-    postRemoved(post: Post) {
-        this.update();
-    }
-
     private update() {
         this.postService.list({
-            parent: this.parent.id,
+            complex: true,
+            creator: this.user.id,
             page: this.page || 1,
             ordering: this.ordering
         }).subscribe((postList: PartialList<Post>) => {

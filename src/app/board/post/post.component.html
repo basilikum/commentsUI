@@ -7,7 +7,8 @@
             </div>
             <div class="d-flex flex-column justify-content-between w-100">
                 <div class="px-3" >
-                    <cmm-who-and-when [user]="post.creator" [date]="post.created"></cmm-who-and-when>
+                    <cmm-who [user]="post.creator"></cmm-who>
+                    <cmm-when [date]="post.created"></cmm-when>
                     <h4 *ngIf="title" class="mb-2 mt-3 light-weight">{{ title }}</h4>
                     <div class="post-content py-2" [innerHtml]="post.text | autoLinks"></div>
                 </div>

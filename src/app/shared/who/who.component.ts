@@ -5,13 +5,12 @@ import { UserService } from '../../core/user.service';
 import { User } from '../models/user.model';
 
 @Component({
-  selector: 'cmm-who-and-when',
-  templateUrl: './who-and-when.component.html',
-  styleUrls: ['./who-and-when.component.less']
+    selector: 'cmm-who',
+    templateUrl: './who.component.html',
+    styleUrls: ['./who.component.less']
 })
-export class WhoAndWhenComponent implements OnInit {
+export class WhoComponent implements OnInit {
     @Input() user: User;
-    @Input() date: Date;
 
     loggedInUser: User;
 

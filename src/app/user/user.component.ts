@@ -12,20 +12,28 @@ import { User } from '../shared/models/user.model';
 export class UserComponent implements OnInit, OnDestroy {
 
     user: User;
+    page = 1;
+    ordering = '-created';
 
-    private dataSub: Subscription;
+    private dSub: Subscription;
+    private qSub: Subscription;
 
     constructor(
         private route: ActivatedRoute
     ) { }
 
     ngOnInit() {
-        this.dataSub = this.route.data.subscribe((data: { user: User }) => {
+        this.qSub = this.route.queryParams.subscribe((params: { page: number, ordering: string }) => {
+            this.page = params.page || 1;
+            this.ordering = params.ordering || '-created';
+        });
+        this.dSub = this.route.data.subscribe((data: { user: User }) => {
             this.user = data.user;
         });
     }
 
     ngOnDestroy() {
-        this.dataSub.unsubscribe();
+        this.dSub.unsubscribe();
+        this.qSub.unsubscribe();
     }
 }

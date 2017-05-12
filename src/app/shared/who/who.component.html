@@ -1,0 +1,2 @@
+<i class="material-icons tiny text-success align-middle" *ngIf="loggedInUser?.id === user.id">fiber_manual_record</i>
+<a [routerLink]="['/user', user.id]"><small>{{ user.name }}</small></a>

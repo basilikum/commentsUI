@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Rx';
 import { Post } from '../shared/models/post.model';
 import { PartialList } from '../shared/partial-list';
 
-import { PostService } from './post.service';
+import { PostService } from '../core/post.service';
 
 
 @Injectable()

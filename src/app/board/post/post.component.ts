@@ -3,7 +3,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Post } from '../../shared/models/post.model';
 
 import { PartialList } from '../../shared/partial-list';
-import { PostService } from '../post.service';
+import { PostService } from '../../core/post.service';
 
 @Component({
     selector: 'cmm-post',

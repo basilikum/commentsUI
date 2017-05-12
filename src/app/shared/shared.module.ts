@@ -15,8 +15,12 @@ import { AutoLinksPipe } from './auto-links.pipe';
 import { RecaptchaComponent } from './recaptcha/recaptcha.component';
 import { AutofocusDirective } from './autofocus.directive';
 import { ElapsedPipe } from './elapsed.pipe';
-import { WhoAndWhenComponent } from './who-and-when/who-and-when.component';
 import { ActivationRequiredModalComponent } from './activation-required-modal/activation-required-modal.component';
+import { ShortNumberPipe } from './short-number.pipe';
+import { WhoComponent } from './who/who.component';
+import { WhenComponent } from './when/when.component';
+import { WhereComponent } from './where/where.component';
+import { VoteHandleComponent } from './vote-handle/vote-handle.component';
 
 
 @NgModule({
@@ -36,13 +40,17 @@ import { ActivationRequiredModalComponent } from './activation-required-modal/ac
         RecaptchaComponent,
         SelectQueryParamComponent,
         UserLabelComponent,
-        WhoAndWhenComponent,
+        WhoComponent,
+        WhenComponent,
+        WhereComponent,
+        VoteHandleComponent,
 
         AutofocusDirective,
         ClickIfAuthDirective,
 
         AutoLinksPipe,
-        ElapsedPipe
+        ElapsedPipe,
+        ShortNumberPipe
     ],
     declarations: [
         ActivationRequiredModalComponent,
@@ -52,13 +60,17 @@ import { ActivationRequiredModalComponent } from './activation-required-modal/ac
         RecaptchaComponent,
         SelectQueryParamComponent,
         UserLabelComponent,
-        WhoAndWhenComponent,
+        WhoComponent,
+        WhenComponent,
+        WhereComponent,
+        VoteHandleComponent,
 
         AutofocusDirective,
         ClickIfAuthDirective,
 
         AutoLinksPipe,
-        ElapsedPipe
+        ElapsedPipe,
+        ShortNumberPipe
     ],
     entryComponents: [
         ActivationRequiredModalComponent,

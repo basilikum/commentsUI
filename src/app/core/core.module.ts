@@ -15,6 +15,10 @@ import { UserLoginLinkComponent } from './user-login-link/user-login-link.compon
 import { HelperService } from './helper.service';
 import { UserService } from './user.service';
 import { FormsService } from './forms.service';
+import { PostService } from './post.service';
+import { VoteService } from './vote.service';
+import { PostDeleteConfirmModalComponent } from './post-delete-confirm-modal/post-delete-confirm-modal.component';
+
 
 @NgModule({
     imports: [
@@ -26,7 +30,8 @@ import { FormsService } from './forms.service';
         UserLoginLinkComponent
     ],
     declarations: [
-        UserLoginLinkComponent
+        UserLoginLinkComponent,
+        PostDeleteConfirmModalComponent
     ],
     providers: [
         AuthService,
@@ -37,7 +42,12 @@ import { FormsService } from './forms.service';
         HasValidUrlParam,
         HelperService,
         UserService,
-        FormsService
+        FormsService,
+        PostService,
+        VoteService
+    ],
+    entryComponents: [
+        PostDeleteConfirmModalComponent
     ]
 })
 export class CoreModule {

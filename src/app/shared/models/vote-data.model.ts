@@ -8,9 +8,10 @@ export class VoteData {
 
     constructor(data: any) {
         this.id = data.id;
-        this.total = data.total;
         this.plus = data.plus;
         this.minus = data.minus;
+        this.total = data.total;
+        this.total = this.plus - this.minus;
         this.own = data.own;
     }
 }

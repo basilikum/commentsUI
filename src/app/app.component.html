@@ -1,6 +1,6 @@
 
 <div class="main-container d-flex flex-column justify-content-between align-items-stretch" style="min-height:100%">
-    <div [class.bg-white]="!fullHeader" [class.bg-light]="fullHeader">
+    <div [class.bg-white]="!fullHeader" [class.bg-header]="fullHeader">
         <header>
             <cmm-header *ngIf="fullHeader"></cmm-header>
             <cmm-header-light *ngIf="!fullHeader"></cmm-header-light>

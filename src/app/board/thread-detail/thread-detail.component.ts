@@ -5,7 +5,7 @@ import { Board } from '../../shared/models/board.model';
 import { Thread } from '../../shared/models/thread.model';
 import { Post } from '../../shared/models/post.model';
 
-import { PostService } from '../post.service';
+import { PostService } from '../../core/post.service';
 
 
 @Component({
@@ -18,8 +18,8 @@ export class ThreadDetailComponent implements OnInit {
     private dataSub : Subscription;
     private paramsSub : Subscription;
 
-    private page = 1;
-    private ordering = '-modified';
+    page = 1;
+    ordering = '-modified';
 
     board: Board;
     thread: Thread;

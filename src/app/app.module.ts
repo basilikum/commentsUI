@@ -12,7 +12,6 @@ import { HomeComponent } from './home/home.component';
 import { SettingsService } from './settings.service';
 
 import { BoardService } from './board/board.service';
-import { VoteService } from './board/vote.service';
 
 import { CoreModule }    from './core/core.module';
 import { SharedModule } from './shared/shared.module';
@@ -48,7 +47,6 @@ export class AuthConfig extends CustomConfig {
   ],
   providers: [
     BoardService,
-    VoteService,
     {
       provide: LOCALE_ID,
       useValue: (navigator.language || navigator['browserLanguage'] || 'en').split('-')[0]

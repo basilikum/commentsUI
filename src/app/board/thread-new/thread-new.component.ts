@@ -33,7 +33,7 @@ export class ThreadNewComponent implements OnInit {
             this.threadCreateForm.value.title,
             this.threadCreateForm.value.message
         ).subscribe(thread => {
-            this.board.id = thread.board;
+            this.board.id = thread.board.toString();
             this.router.navigate(['/board', thread.id], { queryParamsHandling: 'preserve'});
         });
     }
