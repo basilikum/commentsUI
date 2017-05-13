@@ -53,7 +53,7 @@ export class UserPostListComponent implements OnInit {
     private update() {
         this.postService.list({
             complex: true,
-            creator: this.user.id,
+            creator__uid: this.user.id,
             page: this.page || 1,
             ordering: this.ordering
         }).subscribe((postList: PartialList<Post>) => {

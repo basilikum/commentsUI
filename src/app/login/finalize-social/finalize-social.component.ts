@@ -6,7 +6,6 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { User } from '../../shared/models/user.model';
 
-import { AuthService } from '../../core/auth/auth.service';
 import { FormsService } from '../../core/forms.service';
 import { UserService } from '../../core/user.service';
 
@@ -24,7 +23,6 @@ export class FinalizeSocialComponent implements OnInit {
 
     constructor(
         public forms: FormsService,
-        private auth: AuthService,
         private formBuilder: FormBuilder,
         private modalService: NgbModal,
         private router: Router,
@@ -37,7 +35,7 @@ export class FinalizeSocialComponent implements OnInit {
     }
 
     onSubmit() {
-        this.auth.finalize(this.finalizeForm.value).subscribe((success) => {
+        this.userService.finalize(this.finalizeForm.value).subscribe((success) => {
             this.router.navigate(['']);
         });
     }
@@ -59,7 +57,7 @@ export class FinalizeSocialComponent implements OnInit {
                 if (control.value === this.user.name) {
                     resolve(null);
                 } else {
-                    this.auth.userExists(control.value).subscribe((exists) => {
+                    this.userService.exists(control.value).subscribe((exists) => {
                         if (exists) {
                             resolve({ userUnique: true});
                         } else {

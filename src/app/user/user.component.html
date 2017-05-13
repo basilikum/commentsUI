@@ -1,7 +1,8 @@
 <a class="btn btn-link btn-xlg no-border-button text-muted light-weight icon-button-left mr-3" [routerLink]="['/user', user?.id]" queryParamsHandling="preserve">
     <i class="material-icons text-light">person</i>
     <span class="break-all">{{ user?.name }}</span>
-</a>
+</a><br>
+<img src="{{ user.imgUrl }}?size=256">
 <hr>
 
 <cmm-user-post-list [user]="user" [page]="page" [ordering]="ordering"></cmm-user-post-list>

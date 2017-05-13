@@ -5,7 +5,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { throwIfAlreadyLoaded } from './module-import-guard';
 
-import { AuthService } from './auth/auth.service';
 import { IsLoggedIn } from './auth/is-logged-in.guard';
 import { IsLoggedOut } from './auth/is-logged-out.guard';
 import { IsActive } from './auth/is-active.guard';
@@ -34,7 +33,6 @@ import { PostDeleteConfirmModalComponent } from './post-delete-confirm-modal/pos
         PostDeleteConfirmModalComponent
     ],
     providers: [
-        AuthService,
         IsLoggedIn,
         IsLoggedOut,
         IsActive,

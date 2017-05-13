@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { AuthService } from '../../core/auth/auth.service';
 import { FormsService } from '../../core/forms.service';
+import { UserService } from '../../core/user.service';
 
 import { RegisterSuccessModalComponent } from './register-success-modal/register-success-modal.component';
 
@@ -22,10 +22,10 @@ export class RegisterComponent implements OnInit {
 
     constructor(
         public forms: FormsService,
-        private auth: AuthService,
         private formBuilder: FormBuilder,
         private modalService: NgbModal,
-        private router: Router
+        private router: Router,
+        private userService: UserService
     ) { }
 
     ngOnInit() {
@@ -33,7 +33,7 @@ export class RegisterComponent implements OnInit {
     }
 
     onSubmit() {
-        this.auth.register(this.registerForm.value).subscribe((success) => {
+        this.userService.register(this.registerForm.value).subscribe((success) => {
             this.modalService.open(RegisterSuccessModalComponent).result.then(() => {
                 this.router.navigate(['']);
             }, () => {
@@ -52,7 +52,7 @@ export class RegisterComponent implements OnInit {
         }
         const q = new Promise((resolve, reject) => {
             this.timer = setTimeout(() => {
-                this.auth.userExists(control.value).subscribe((exists) => {
+                this.userService.exists(control.value).subscribe((exists) => {
                     if (exists) {
                         resolve({ userUnique: true});
                     } else {

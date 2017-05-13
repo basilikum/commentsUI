@@ -1,11 +1,13 @@
+import { environment } from '../../../environments/environment';
+
 export class User {
     public id: string;
     public name: string;
     public imgUrl: string;
 
     constructor(data: any) {
-        this.id = data.id;
+        this.id = data.uid;
         this.name = data.name;
-        this.imgUrl = data.ext_picture_url;
+        this.imgUrl = environment.apiBaseUrl + '/users/' + data.uid + '/avatar'
     }
 }
