@@ -19,6 +19,7 @@ import { routing } from "./app.routing";
 import { HeaderComponent } from './header/header.component';
 import { HeaderLightComponent } from './header-light/header-light.component';
 
+
 export class AuthConfig extends CustomConfig {
     defaultHeaders = {'Content-Type': 'application/json'};
     baseUrl = environment.apiBaseUrl;

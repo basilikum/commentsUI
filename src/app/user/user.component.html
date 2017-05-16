@@ -1,8 +1,21 @@
 <a class="btn btn-link btn-xlg no-border-button text-muted light-weight icon-button-left mr-3" [routerLink]="['/user', user?.id]" queryParamsHandling="preserve">
     <i class="material-icons text-light">person</i>
     <span class="break-all">{{ user?.name }}</span>
-</a><br>
-<img src="{{ user.imgUrl }}?size=256">
-<hr>
+</a>
 
-<cmm-user-post-list [user]="user" [page]="page" [ordering]="ordering"></cmm-user-post-list>
+
+<div class="d-flex flex-column flex-sm-row align-items-stretch align-items-sm-start">
+    <div class="p-3 mr-sm-3 mb-3 mb-sm-0 mt-2 bg-header d-flex flex-row flex-sm-column">
+        <div>
+            <cmm-user-avatar [user]="user" [size]="128"></cmm-user-avatar>
+        </div>
+        <div class="mt-0 ml-3 mt-sm-2 ml-sm-0">
+            <small class="text-muted">registered since {{ user.created | date: 'shortDate' }}</small>
+        </div>
+    </div>
+    <div>
+        <hr class="hidden-xs-down">
+        <cmm-user-post-list [user]="user" [page]="page" [ordering]="ordering"></cmm-user-post-list>
+    </div>
+</div>
+

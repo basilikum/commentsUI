@@ -21,6 +21,10 @@ import { WhoComponent } from './who/who.component';
 import { WhenComponent } from './when/when.component';
 import { WhereComponent } from './where/where.component';
 import { VoteHandleComponent } from './vote-handle/vote-handle.component';
+import { UserAvatarComponent } from './user-avatar/user-avatar.component';
+import { UserAvatarSelectComponent } from './user-avatar-select/user-avatar-select.component';
+import { CropperComponent } from './cropper/cropper.component';
+
 
 
 @NgModule({
@@ -36,6 +40,7 @@ import { VoteHandleComponent } from './vote-handle/vote-handle.component';
         CommonModule,
 
         CountdownTimerComponent,
+        CropperComponent,
         PaginationComponent,
         RecaptchaComponent,
         SelectQueryParamComponent,
@@ -43,6 +48,8 @@ import { VoteHandleComponent } from './vote-handle/vote-handle.component';
         WhoComponent,
         WhenComponent,
         WhereComponent,
+        UserAvatarComponent,
+        UserAvatarSelectComponent,
         VoteHandleComponent,
 
         AutofocusDirective,
@@ -55,6 +62,7 @@ import { VoteHandleComponent } from './vote-handle/vote-handle.component';
     declarations: [
         ActivationRequiredModalComponent,
         CountdownTimerComponent,
+        CropperComponent,
         LoginRequiredModalComponent,
         PaginationComponent,
         RecaptchaComponent,
@@ -63,6 +71,8 @@ import { VoteHandleComponent } from './vote-handle/vote-handle.component';
         WhoComponent,
         WhenComponent,
         WhereComponent,
+        UserAvatarComponent,
+        UserAvatarSelectComponent,
         VoteHandleComponent,
 
         AutofocusDirective,
