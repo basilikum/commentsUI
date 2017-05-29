@@ -7,5 +7,7 @@
         </label>
     </div>
 </form>
-<cmm-cropper [src]="imgSrc" [preview]="cropperPreview"></cmm-cropper>
-<div class="crop-preview-64" #cropperPreview></div>
+<div *ngIf="imgSrc">
+    <cmm-cropper [src]="imgSrc" [preview]="cropperPreview" (cropped)="cropHandler($event)"></cmm-cropper>
+    <div class="crop-preview-64" #cropperPreview></div>
+</div>

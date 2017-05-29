@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+import { AvatarService } from '../../core/avatar.service';
+
 import { User } from '../models/user.model';
 
 @Component({
@@ -12,8 +14,13 @@ export class UserAvatarComponent implements OnInit {
     @Input() user: User;
     @Input() size: number;
 
-    constructor() { }
+    imgUrl = '';
+
+    constructor(
+        private avatarService: AvatarService
+    ) { }
 
     ngOnInit() {
+        this.imgUrl = this.avatarService.getLink(this.user, this.size);
     }
 }

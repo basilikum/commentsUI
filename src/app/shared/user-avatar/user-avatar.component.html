@@ -1,4 +1,4 @@
-<img *ngIf="user.hasAvatar" src="{{ user.imgUrl }}?size={{size}}">
+<img *ngIf="user.hasAvatar" src="{{ imgUrl }}">
 <div class="avatar-placeholder"
      *ngIf="!user.hasAvatar"
      [style.width]="size + 'px'"

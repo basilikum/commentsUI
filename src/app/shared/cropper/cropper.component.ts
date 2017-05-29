@@ -1,4 +1,6 @@
-import { Component, OnInit, AfterViewInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+
+import { CropData } from './crop-data';
 
 declare let Cropper: any;
 
@@ -10,6 +12,7 @@ declare let Cropper: any;
 export class CropperComponent implements OnInit, AfterViewInit {
     @Input() src: string;
     @Input() preview: any;
+    @Output() cropped : EventEmitter<CropData> = new EventEmitter<CropData>();
 
     @ViewChild('imgEl') imgEl;
 
@@ -29,7 +32,22 @@ export class CropperComponent implements OnInit, AfterViewInit {
             rotatable: false,
             scalable: false,
             movable: false,
-            viewMode: 1
+            viewMode: 1,
+            cropend: (evt) => {
+                this.emitCropData();
+            },
+            ready: (evt) => {
+                this.emitCropData();
+            }
+        });
+    }
+
+    private emitCropData() {
+        const data = this.cropper.getData();
+        this.cropped.emit({
+            x: Math.round(data.x),
+            y: Math.round(data.y),
+            size: Math.round(data.width)
         });
     }
 }
