@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 
 import { AvatarService } from '../../core/avatar.service';
 
+import { FileObj } from '../img-select/file-obj';
+
 import { User } from '../models/user.model';
 import { CropData } from '../cropper/crop-data';
 
@@ -16,6 +18,7 @@ export class UserAvatarSelectComponent implements OnInit {
 
     imgSrc = '';
 
+    private fileObj: FileObj = null;
     private cropData: CropData = null;
 
     constructor(
@@ -23,7 +26,7 @@ export class UserAvatarSelectComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.imgSrc = this.user.imgUrl + '.jpg?size=256';
+        this.imgSrc = this.avatarService.getLink(this.user, 'orig');
     }
 
     cropHandler(cropData: CropData) {
@@ -31,8 +34,13 @@ export class UserAvatarSelectComponent implements OnInit {
     }
 
     upload() {
-        this.avatarService.upload('any').subscribe((tmpFileUrl: string) => {
-            this.imgSrc = tmpFileUrl;
+        this.avatarService.upload(this.fileObj.file, this.cropData).subscribe(() => {
+
         });
+    }
+
+    imgSelect(fileObj: FileObj) {
+        this.imgSrc = fileObj.url;
+        this.fileObj = fileObj;
     }
 }

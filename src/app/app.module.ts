@@ -6,6 +6,7 @@ import { environment } from '../environments/environment';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Ng2UiAuthModule, CustomConfig } from 'ng2-ui-auth';
+import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -21,7 +22,7 @@ import { HeaderLightComponent } from './header-light/header-light.component';
 
 
 export class AuthConfig extends CustomConfig {
-    defaultHeaders = {'Content-Type': 'application/json'};
+    //defaultHeaders = {'Content-Type': 'application/json'};
     baseUrl = environment.apiBaseUrl;
     providers = {
         facebook: {clientId: '432035347139976'},
@@ -42,6 +43,7 @@ export class AuthConfig extends CustomConfig {
     HttpModule,
     Ng2UiAuthModule.forRoot(AuthConfig),
     NgbModule.forRoot(),
+    FileUploadModule,
     CoreModule,
     SharedModule,
     routing

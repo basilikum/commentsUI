@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -24,6 +25,7 @@ import { VoteHandleComponent } from './vote-handle/vote-handle.component';
 import { UserAvatarComponent } from './user-avatar/user-avatar.component';
 import { UserAvatarSelectComponent } from './user-avatar-select/user-avatar-select.component';
 import { CropperComponent } from './cropper/cropper.component';
+import { ImgSelectComponent } from './img-select/img-select.component';
 
 
 
@@ -31,7 +33,9 @@ import { CropperComponent } from './cropper/cropper.component';
     imports: [
         NgbModule,
         CommonModule,
-        RouterModule
+        RouterModule,
+        FormsModule,
+        ReactiveFormsModule
     ],
     providers: [
         DataService
@@ -41,6 +45,7 @@ import { CropperComponent } from './cropper/cropper.component';
 
         CountdownTimerComponent,
         CropperComponent,
+        ImgSelectComponent,
         PaginationComponent,
         RecaptchaComponent,
         SelectQueryParamComponent,
@@ -63,6 +68,7 @@ import { CropperComponent } from './cropper/cropper.component';
         ActivationRequiredModalComponent,
         CountdownTimerComponent,
         CropperComponent,
+        ImgSelectComponent,
         LoginRequiredModalComponent,
         PaginationComponent,
         RecaptchaComponent,

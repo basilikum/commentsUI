@@ -21,10 +21,12 @@
       "styles": [
         "assets/bootstrap.min.css",
         "../node_modules/cropperjs/dist/cropper.css",
+        "../node_modules/croppie/croppie.css",
         "styles.less"
       ],
       "scripts": [
-        "../node_modules/cropperjs/dist/cropper.js"
+        "../node_modules/cropperjs/dist/cropper.js",
+        "../node_modules/croppie/croppie.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

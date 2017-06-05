@@ -1,7 +1,7 @@
-<img *ngIf="user.hasAvatar" src="{{ imgUrl }}">
+
 <div class="avatar-placeholder"
-     *ngIf="!user.hasAvatar"
      [style.width]="size + 'px'"
      [style.height]="size + 'px'">
-    <i class="material-icons text-light" [style.font-size]="size + 'px'">face</i>
+    <img *ngIf="user.hasAvatar" src="{{ imgUrl }}">
+    <i *ngIf="!user.hasAvatar" class="material-icons text-light" [style.font-size]="size + 'px'">face</i>
 </div>
