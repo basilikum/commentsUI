@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from "@angular/http";
+import { Response } from "@angular/http";
 import { Observable } from 'rxjs/Rx';
-import { JwtHttp } from 'ng2-ui-auth';
 
 import { environment } from '../../environments/environment';
 import { HelperService } from '../core/helper.service';
+import { HttpService } from '../core/http.service';
 import { Board } from '../shared/models/board.model';
 import { Thread } from '../shared/models/thread.model';
 import { PartialList } from '../shared/partial-list';
@@ -16,7 +16,7 @@ export class BoardService {
     private boardsUrl = environment.apiBaseUrl + '/boards/';
 
     constructor(
-        private http: JwtHttp,
+        private http: HttpService,
         private helperService: HelperService
     ) { }
 

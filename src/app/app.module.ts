@@ -1,8 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpModule, Http, XHRBackend, RequestOptions } from '@angular/http';
 import { environment } from '../environments/environment';
+
+import { httpFactory } from "./http.factory";
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Ng2UiAuthModule, CustomConfig } from 'ng2-ui-auth';
@@ -22,7 +24,7 @@ import { HeaderLightComponent } from './header-light/header-light.component';
 
 
 export class AuthConfig extends CustomConfig {
-    //defaultHeaders = {'Content-Type': 'application/json'};
+    defaultHeaders = {'Content-Type': 'application/json'};
     baseUrl = environment.apiBaseUrl;
     providers = {
         facebook: {clientId: '432035347139976'},
@@ -53,6 +55,11 @@ export class AuthConfig extends CustomConfig {
     {
       provide: LOCALE_ID,
       useValue: (navigator.language || navigator['browserLanguage'] || 'en').split('-')[0]
+    },
+    {
+        provide: Http,
+        useFactory: httpFactory,
+        deps: [XHRBackend, RequestOptions]
     }
   ],
   bootstrap: [AppComponent]

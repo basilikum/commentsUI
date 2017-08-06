@@ -1,6 +1,14 @@
-
-<cmm-img-select (select)="imgSelect($event)"></cmm-img-select>
-<div *ngIf="imgSrc">
-    <cmm-cropper [src]="imgSrc" [preview]="cropperPreview" (cropped)="cropHandler($event)"></cmm-cropper>
+<div class="d-flex flex-row align-items-end">
+    <div>
+        <cmm-user-avatar [user]="user" [size]="128" [counter]="counter"></cmm-user-avatar>
+    </div>
+    <div class="pl-3">
+        <cmm-img-select (select)="imgSelect($event)"></cmm-img-select>
+    </div>
 </div>
-<button class="btn btn-primary" (click)="upload()">Upload</button>
+
+<div *ngIf="imgSrc">
+    <cmm-cropper [src]="imgSrc" (cropped)="cropHandler($event)"></cmm-cropper>
+    <button class="btn btn-primary" (click)="upload()">Upload</button>
+</div>
+

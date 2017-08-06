@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from "@angular/http";
+import { Response } from "@angular/http";
 import { Observable } from 'rxjs/Rx';
-import { JwtHttp } from 'ng2-ui-auth';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { environment } from '../../environments/environment';
 import { Post } from '../shared/models/post.model';
 import { PartialList } from '../shared/partial-list';
 
-import { HelperService } from '../core/helper.service';
+import { HelperService } from './helper.service';
+import { HttpService } from './http.service';
 
 import { PostDeleteConfirmModalComponent } from './post-delete-confirm-modal/post-delete-confirm-modal.component';
 
@@ -19,7 +19,7 @@ export class PostService {
     private postsUrl = environment.apiBaseUrl + '/boards/posts/';
 
     constructor(
-        private http: JwtHttp,
+        private http: HttpService,
         private helperService: HelperService,
         private modalService: NgbModal
     ) { }

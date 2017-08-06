@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Response } from '@angular/http';
 import { AuthService } from 'ng2-ui-auth';
-import { JwtHttp } from 'ng2-ui-auth';
 
 import { Observable } from 'rxjs/Rx';
 
 import { environment } from '../../environments/environment';
 
 import { User } from '../shared/models/user.model';
+
+import { HttpService } from './http.service';
 
 @Injectable()
 export class UserService {
@@ -16,32 +17,43 @@ export class UserService {
 
     constructor(
         private auth: AuthService,
-        private http: Http,
-        private jwtHttp: JwtHttp
+        private http: HttpService
     ) { }
 
     get(id: number) : Observable<User> {
-        return this.jwtHttp.get(this.usersUrl + '/' + id).map((response: Response) => {
+        return this.http.get(this.usersUrl + '/' + id).map((response: Response) => {
+            return new User(response.json());
+        });
+    }
+
+    me() : Observable<User> {
+        return this.http.get(this.usersUrl + '/me').map((response: Response) => {
             return new User(response.json());
         });
     }
 
     register(regData: { username:string, email:string, password:string, 'g-recaptcha-response':string }) : Observable<boolean> {
-        return this.http.post(this.usersUrl + '/register', regData).map((response: Response) => {
+        return this.http.post(this.usersUrl + '/register', regData, { excludeToken: true }).map((response: Response) => {
             this.auth.setToken(response.json().token);
             return true;
         });
     }
 
+    update(data: { username:string, email:string, password?:string }) : Observable<boolean> {
+        return this.http.patch(this.usersUrl + '/me', data).map((response: Response) => {
+            return true;
+        });
+    }
+
     finalize(finalizeData: { username:string, 'g-recaptcha-response':string }) : Observable<boolean> {
-        return this.jwtHttp.patch(this.usersUrl + '/finalize', finalizeData).map((response: Response) => {
+        return this.http.patch(this.usersUrl + '/finalize', finalizeData).map((response: Response) => {
             this.auth.setToken(response.json().token);
             return true;
         });
     }
 
     exists(username: string) : Observable<boolean> {
-        return this.http.get(this.usersUrl + '/user-exists?username=' + username).map((response: Response) => {
+        return this.http.get(this.usersUrl + '/user-exists?username=' + username, { excludeToken: true }).map((response: Response) => {
             return response.json().exists;
         });
     }
@@ -53,7 +65,7 @@ export class UserService {
         }
         return new User({
             uid: payload['user_id'],
-            name: payload['username']
+            username: payload['username']
         });
     }
 

@@ -11,6 +11,7 @@ import { IsActive } from './auth/is-active.guard';
 import { IsInactive } from './auth/is-inactive.guard';
 import { HasValidUrlParam } from './has_valid_url_param.guard';
 import { UserLoginLinkComponent } from './user-login-link/user-login-link.component';
+import { HttpService } from './http.service';
 import { AvatarService } from './avatar.service';
 import { HelperService } from './helper.service';
 import { UserService } from './user.service';
@@ -44,7 +45,8 @@ import { PostDeleteConfirmModalComponent } from './post-delete-confirm-modal/pos
         UserService,
         FormsService,
         PostService,
-        VoteService
+        VoteService,
+        HttpService
     ],
     entryComponents: [
         PostDeleteConfirmModalComponent

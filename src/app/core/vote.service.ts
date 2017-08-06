@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from "@angular/http";
+import { Response } from "@angular/http";
 import { Observable } from 'rxjs/Rx';
-import { JwtHttp } from 'ng2-ui-auth';
 
 import { environment } from '../../environments/environment';
 import { VoteData } from '../shared/models/vote-data.model';
 
-import { HelperService } from '../core/helper.service';
+import { HelperService } from './helper.service';
+import { HttpService } from './http.service';
 
 
 @Injectable()
@@ -15,7 +15,7 @@ export class VoteService {
     private votesUrl = environment.apiBaseUrl + '/votes/';
 
     constructor(
-        private http: JwtHttp,
+        private http: HttpService,
         private helperService: HelperService
     ) { }
 

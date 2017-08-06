@@ -27,6 +27,8 @@ import { UserAvatarSelectComponent } from './user-avatar-select/user-avatar-sele
 import { CropperComponent } from './cropper/cropper.component';
 import { ImgSelectComponent } from './img-select/img-select.component';
 
+import { MeResolver } from './me.resolver';
+
 
 
 @NgModule({
@@ -38,7 +40,8 @@ import { ImgSelectComponent } from './img-select/img-select.component';
         ReactiveFormsModule
     ],
     providers: [
-        DataService
+        DataService,
+        MeResolver
     ],
     exports: [
         CommonModule,

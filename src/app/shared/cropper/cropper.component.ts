@@ -13,7 +13,6 @@ declare let Croppie: any;
 })
 export class CropperComponent implements OnInit, OnChanges, AfterViewInit {
     @Input() src: string;
-    @Input() preview: any;
     @Output() cropped : EventEmitter<CropData> = new EventEmitter<CropData>();
 
     @ViewChild('cropEl') cropEl: ElementRef;
@@ -36,7 +35,7 @@ export class CropperComponent implements OnInit, OnChanges, AfterViewInit {
 
     ngAfterViewInit() {
         this.cropper = new Croppie(this.cropEl.nativeElement, {
-            boundary: { width: 500, height: 500 },
+            boundary: { width: '100%', height: 500 },
             viewport: { width: 256, height: 256, type: 'square' },
             update: this.emitCropData.bind(this)
         });

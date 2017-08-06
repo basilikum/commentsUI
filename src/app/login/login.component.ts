@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import {AuthService} from 'ng2-ui-auth';
+import { AuthService } from 'ng2-ui-auth';
 
 import { UserService } from '../core/user.service';
 

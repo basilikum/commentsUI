@@ -1,1 +1,18 @@
-<cmm-user-avatar-select [user]="user"></cmm-user-avatar-select>
+<a class="btn btn-link btn-xlg no-border-button text-muted light-weight icon-button-left mr-3" [routerLink]="['/settings']" queryParamsHandling="preserve">
+    <i class="material-icons text-light">settings</i>
+    <span class="break-all">Settings</span>
+</a>
+<div class="narrow mx-auto">
+    <h3 class="mt-5 px-3 py-2 text-muted bg-light light-weight">Your Avatar</h3>
+    <div class="p-3">
+        <cmm-user-avatar-select [user]="user"></cmm-user-avatar-select>
+    </div>
+    <h3 class="mt-5 px-3 py-2 text-muted bg-light light-weight">Your Details</h3>
+    <div class="p-3">
+        <cmm-user-edit [user]="user"></cmm-user-edit>
+    </div>
+    <h3 class="mt-5 px-3 py-2 text-muted bg-light light-weight">Authentication</h3>
+    <div class="p-3">
+        <cmm-user-change-auth [user]="user"></cmm-user-change-auth>
+    </div>
+</div>

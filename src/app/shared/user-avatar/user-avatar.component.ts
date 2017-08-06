@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, Input } from '@angular/core';
 
 import { AvatarService } from '../../core/avatar.service';
 
@@ -13,6 +13,7 @@ export class UserAvatarComponent implements OnInit {
 
     @Input() user: User;
     @Input() size: number;
+    @Input() counter = 0;
 
     imgUrl = '';
 
@@ -21,6 +22,14 @@ export class UserAvatarComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.imgUrl = this.avatarService.getLink(this.user, this.size);
+        this.setImg();
+    }
+
+    ngOnChanges() {
+        this.setImg();
+    }
+
+    private setImg() {
+        this.imgUrl = this.avatarService.getLink(this.user, this.size) + '&c=' + this.counter;
     }
 }

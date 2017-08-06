@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Response, RequestOptions, Headers, Http } from '@angular/http';
-import { JwtHttp } from 'ng2-ui-auth';
+import { Response, RequestOptions, Headers } from '@angular/http';
 
 import { Observable } from 'rxjs/Rx';
 
 import { environment } from '../../environments/environment';
 
-import { HelperService } from '../core/helper.service';
+import { HelperService } from './helper.service';
+import { HttpService } from './http.service';
 
 import { User } from '../shared/models/user.model';
 import { CropData } from '../shared/cropper/crop-data';
@@ -19,8 +19,7 @@ export class AvatarService {
 
     constructor(
         private helperService: HelperService,
-        private jwtHttp: JwtHttp,
-        private http: Http
+        private http: HttpService
     ) { }
 
     getLink(user: User, size: number | string) : string {
@@ -38,16 +37,17 @@ export class AvatarService {
         formData.append('y', '' + cropData.y);
         formData.append('size', '' + cropData.size);;
         const headers = new Headers();
+        headers.append('Content-Type', null);
         headers.append('Accept', 'application/json');
         const options = new RequestOptions({ headers: headers });
-        return this.jwtHttp.post(this.usersUrl + '/avatar', formData, options).map((response: Response) => {
+        return this.http.post(this.usersUrl + '/avatar', formData, options).map((response: Response) => {
             return this.usersUrl + '/avatar/' + response.json().id + '.jpg';
         });
     }
 
     set(imgId: string, cropData: CropData) : Observable<boolean> {
         const data = Object.assign({ img_id: imgId }, cropData);
-        return this.jwtHttp.patch(this.usersUrl + '/avatar', data).map((response: Response) => {
+        return this.http.patch(this.usersUrl + '/avatar', data).map((response: Response) => {
             return true;
         });
     }
